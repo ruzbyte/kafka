@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, ChevronRight, Calendar, Grid3X3 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar, Grid3X3, Loader2 } from "lucide-react";
 import { WeekView } from "@/components/week-view";
 import { MonthView } from "@/components/month-view";
 import type { CalendarEvent } from "@/lib/webuntis-utils";
@@ -12,11 +12,12 @@ import { ICSLinkDialog } from "./ics-link-dialog";
 
 interface CalendarViewProps {
   classes: CalendarEvent[];
+  loading?: boolean;
 }
 
 type ViewMode = "week" | "month";
 
-export function CalendarView({ classes }: CalendarViewProps) {
+export function CalendarView({ classes, loading = false }: CalendarViewProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<ViewMode>("week");
 
@@ -126,7 +127,11 @@ export function CalendarView({ classes }: CalendarViewProps) {
       {/* Calendar Content */}
       <Card className="flex-1">
         <CardContent className="p-0">
-          {viewMode === "week" ? (
+          {loading ? (
+            <div className="flex items-center justify-center h-64">
+              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            </div>
+          ) : viewMode === "week" ? (
             <WeekView currentDate={currentDate} classes={classes} />
           ) : (
             <MonthView currentDate={currentDate} classes={classes} />

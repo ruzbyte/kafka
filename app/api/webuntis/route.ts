@@ -7,11 +7,13 @@ type ResponseData = {
 
 export async function POST(request: Request) {
   try {
-    const { subjects } = await request.json();
+    const { subjects, schoolYear: schoolYearName } = await request.json();
 
-    const allLessons = await webuntisApi.getAllLessonsForSchoolYear(
-      await webuntisApi.getSchoolYearByName("2025/2026")
-    );
+    const schoolYear = schoolYearName
+      ? await webuntisApi.getSchoolYearByName(schoolYearName)
+      : await webuntisApi.getCurrentSchoolYear();
+
+    const allLessons = await webuntisApi.getAllLessonsForSchoolYear(schoolYear);
 
     const lessons = allLessons.filter((lesson) =>
       subjects.some(
