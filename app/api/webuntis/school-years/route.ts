@@ -2,6 +2,7 @@ import { webuntisApi } from "@/lib/webuntis_api";
 
 export async function GET() {
   try {
+    await webuntisApi.login();
     const schoolYears = await webuntisApi.getSchoolYears();
 
     return new Response(JSON.stringify(schoolYears), {

@@ -13,6 +13,8 @@ export async function GET(
 ) {
   const { userId } = await params;
 
+  await webuntisApi.login();
+
   // Fetch calendar events for the user
   const subjects = await getUserSubjects(userId);
   const userCourseOfStudy = await getUserCourseOfStudy(userId);

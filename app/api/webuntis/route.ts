@@ -7,6 +7,7 @@ type ResponseData = {
 
 export async function POST(request: Request) {
   try {
+    await webuntisApi.login();
     const { subjects, schoolYear: schoolYearName } = await request.json();
 
     const schoolYear = schoolYearName
