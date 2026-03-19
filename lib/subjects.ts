@@ -10,6 +10,15 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+export const getUserSettings = async (userId: string) => {
+  const userRef = doc(db, "users", userId);
+  const userSnap = await getDoc(userRef);
+  if (userSnap.exists()) {
+    return userSnap.data();
+  }
+  return null;
+};
+
 export const getUserCourseOfStudy = async (
   userId: string,
 ): Promise<string | null> => {

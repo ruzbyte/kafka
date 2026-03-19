@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -20,9 +20,6 @@ import {
   Calendar,
   Clock,
   BookOpen,
-  Target,
-  TrendingUp,
-  Bell,
   Plus,
   ChevronRight,
   ExternalLink,
@@ -32,88 +29,112 @@ import {
   MapPin,
   CreditCard,
   Mail,
+  Loader2,
+  LayoutGrid,
+  ClipboardList,
+  Bell,
+  Sparkles,
+  Search,
+  Settings,
 } from "lucide-react";
+import { useAuthStore } from "@/hooks/auth_hook";
+import { getEnrolledAndUncompletedSubjects } from "@/lib/subjects";
+import { getSubjectNotes } from "@/lib/notes";
+import type { UserSubject } from "@/types/subjects";
+import type { SubjectNote } from "@/types/types";
 
 export default function Dashboard() {
+  const { user, loading: authLoading } = useAuthStore();
   const [currentTime] = useState(new Date());
+  const [subjects, setSubjects] = useState<UserSubject[]>([]);
+  const [todayClasses, setTodayClasses] = useState<any[]>([]);
+  const [recentNotes, setRecentNotes] = useState<
+    (SubjectNote & { subjectName: string; subjectColor?: string })[]
+  >([]);
+  const [loading, setLoading] = useState(true);
 
-  // Mock data - replace with Firebase data
-  const upcomingDeadlines = [
-    {
-      id: 1,
-      title: "Mathematik Hausaufgabe",
-      subject: "Mathematik",
-      dueDate: "2025-09-16",
-      priority: "high",
-    },
-    {
-      id: 2,
-      title: "Geschichte Essay",
-      subject: "Geschichte",
-      dueDate: "2025-09-18",
-      priority: "medium",
-    },
-    {
-      id: 3,
-      title: "Physik Labor",
-      subject: "Physik",
-      dueDate: "2025-09-20",
-      priority: "low",
-    },
-  ];
+  useEffect(() => {
+    async function fetchData() {
+      if (!user) return;
 
-  const todayClasses = [
-    {
-      id: 1,
-      subject: "Mathematik",
-      time: "08:00 - 09:30",
-      room: "Raum 101",
-      status: "upcoming",
-    },
-    {
-      id: 2,
-      subject: "Deutsch",
-      time: "10:00 - 11:30",
-      room: "Raum 205",
-      status: "current",
-    },
-    {
-      id: 3,
-      subject: "Physik",
-      time: "13:00 - 14:30",
-      room: "Labor 3",
-      status: "upcoming",
-    },
-  ];
+      try {
+        setLoading(true);
+        // 1. Fetch enrolled subjects
+        const enrolledSubjects = await getEnrolledAndUncompletedSubjects(
+          user.uid,
+        );
+        setSubjects(enrolledSubjects);
 
-  const recentNotes = [
-    {
-      id: 1,
-      title: "Quadratische Gleichungen",
-      subject: "Mathematik",
-      lastEdited: "2025-09-13",
-    },
-    {
-      id: 2,
-      title: "Weimarer Republik",
-      subject: "Geschichte",
-      lastEdited: "2025-09-12",
-    },
-    {
-      id: 3,
-      title: "Optik Grundlagen",
-      subject: "Physik",
-      lastEdited: "2025-09-11",
-    },
-  ];
+        // 2. Fetch today's classes from WebUntis API
+        if (enrolledSubjects.length > 0) {
+          // Optimized: Fetch only for today
+          const start = new Date(currentTime);
+          start.setHours(0, 0, 0, 0);
+          const end = new Date(currentTime);
+          end.setHours(23, 59, 59, 999);
 
-  const semesterProgress = {
-    currentWeek: 3,
-    totalWeeks: 16,
-    completedAssignments: 8,
-    totalAssignments: 24,
-    averageGrade: 2.1,
-  };
+          const response = await fetch("/api/webuntis", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              subjects: enrolledSubjects,
+              schoolYear: user.defaultSchoolYear || "2025/2026",
+              studyField: user.studyField,
+              enrolledClasses: user.enrolledClasses,
+              startDate: start.toISOString(),
+              endDate: end.toISOString(),
+            }),
+          });
+
+          if (response.ok) {
+            const lessons = await response.json();
+            const year = currentTime.getFullYear();
+            const month = String(currentTime.getMonth() + 1).padStart(2, "0");
+            const day = String(currentTime.getDate()).padStart(2, "0");
+            const todayStr = `${year}${month}${day}`;
+
+            const filtered = lessons.filter(
+              (l: any) => l.date.toString() === todayStr,
+            );
+            setTodayClasses(
+              filtered.sort((a: any, b: any) => a.startTime - b.startTime),
+            );
+          }
+        }
+
+        // 3. Fetch recent notes across all subjects
+        const notesPromises = enrolledSubjects.map(async (subject) => {
+          const notes = await getSubjectNotes(user.uid, subject.id.toString());
+          return notes.map((n) => ({
+            ...n,
+            subjectName: subject.longName,
+            subjectColor: subject.backColor
+              ? `#${subject.backColor}`
+              : undefined,
+          }));
+        });
+
+        const allNotesResults = await Promise.all(notesPromises);
+        const flattenedNotes = allNotesResults.flat();
+        const sortedNotes = flattenedNotes
+          .sort(
+            (a, b) =>
+              new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+          )
+          .slice(0, 5);
+
+        setRecentNotes(sortedNotes);
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (user) {
+      fetchData();
+    }
+  }, [user, currentTime]);
 
   const institutionalLinks = [
     {
@@ -176,64 +197,57 @@ export default function Dashboard() {
     },
   ];
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case "high":
-        return "bg-red-500";
-      case "medium":
-        return "bg-yellow-500";
-      case "low":
-        return "bg-green-500";
-      default:
-        return "bg-gray-500";
-    }
+  const formatTime = (time: number) => {
+    const timeStr = time.toString().padStart(4, "0");
+    return `${timeStr.slice(0, 2)}:${timeStr.slice(2)}`;
   };
 
-  const getClassStatus = (status: string) => {
-    switch (status) {
-      case "current":
-        return "bg-blue-500 text-white";
-      case "upcoming":
-        return "bg-muted text-muted-foreground";
-      default:
-        return "bg-muted text-muted-foreground";
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-background dark">
-      <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="px-6 py-3">
-          <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Dashboard</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </nav>
+  if (authLoading || (loading && !user)) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-background dark text-foreground">
+        <div className="flex flex-col items-center space-y-4">
+          <Loader2 className="w-12 h-12 animate-spin text-primary" />
+          <p className="text-muted-foreground animate-pulse">
+            Lade dein Dashboard...
+          </p>
         </div>
       </div>
+    );
+  }
 
-      <div className="flex">
-        {/* Main Content */}
-        <div className="flex-1 p-6">
-          <div className="max-w-6xl mx-auto space-y-6">
+  return (
+    <>
+      <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b border-border/40">
+        <div className="flex items-center gap-2 px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem className="hidden md:block">
+                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Übersicht</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </header>
+
+      <div className="flex flex-1 flex-col md:flex-row min-h-0 overflow-hidden">
+        {/* Main Content Area */}
+        <div className="flex-1 overflow-y-auto p-6">
+          <div className="max-w-6xl mx-auto space-y-8">
             {/* Header */}
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold text-foreground">
-                  Hallo zaroc
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between space-y-4 md:space-y-0">
+              <div className="space-y-1">
+                <h1 className="text-3xl font-extrabold text-foreground flex items-center gap-2">
+                  Hallo {user?.displayName || "Student"}{" "}
+                  <Sparkles className="w-6 h-6 text-primary" />
                 </h1>
                 <p className="text-muted-foreground">
-                  Hier ist dein Überblick für heute,{" "}
+                  Heute ist{" "}
                   {currentTime.toLocaleDateString("de-DE", {
                     weekday: "long",
                     year: "numeric",
@@ -242,300 +256,319 @@ export default function Dashboard() {
                   })}
                 </p>
               </div>
-              <Button className="bg-primary hover:bg-primary/90">
-                <Plus className="w-4 h-4 mr-2" />
-                Neue Aufgabe
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="hidden sm:flex border-border bg-muted/20"
+                >
+                  <Search className="w-4 h-4 mr-2" />
+                  Suchen
+                </Button>
+                <Link href="/dashboard/account">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-border bg-muted/20"
+                  >
+                    <Settings className="w-4 h-4 mr-2" />
+                    Einstellungen
+                  </Button>
+                </Link>
+              </div>
             </div>
 
-            {/* Main Dashboard Grid */}
+            {/* Dashboard Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Semester Progress */}
-              <Card className="bg-card border-border">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-card-foreground">
-                    Semester Fortschritt
-                  </CardTitle>
-                  <Target className="h-4 w-4 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex justify-between text-sm mb-2">
-                        <span className="text-muted-foreground">
-                          Woche {semesterProgress.currentWeek} von{" "}
-                          {semesterProgress.totalWeeks}
-                        </span>
-                        <span className="text-card-foreground">
-                          {Math.round(
-                            (semesterProgress.currentWeek /
-                              semesterProgress.totalWeeks) *
-                              100
-                          )}
-                          %
-                        </span>
-                      </div>
-                      <Progress
-                        value={
-                          (semesterProgress.currentWeek /
-                            semesterProgress.totalWeeks) *
-                          100
-                        }
-                        className="h-2"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <p className="text-muted-foreground">Aufgaben</p>
-                        <p className="text-lg font-semibold text-card-foreground">
-                          {semesterProgress.completedAssignments}/
-                          {semesterProgress.totalAssignments}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-muted-foreground">Durchschnitt</p>
-                        <p className="text-lg font-semibold text-card-foreground">
-                          {semesterProgress.averageGrade}
-                        </p>
-                      </div>
-                    </div>
+              {/* Today's Schedule - Full width on mobile/tablet, 2/3 on desktop */}
+              <Card className="lg:col-span-2 bg-card border-border shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-border/40">
+                  <div className="flex items-center space-x-2">
+                    <Calendar className="h-5 w-5 text-primary" />
+                    <CardTitle className="text-lg font-bold">
+                      Heutiger Stundenplan
+                    </CardTitle>
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* Today's Schedule */}
-              <Card className="bg-card border-border">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-card-foreground">
-                    Heutiger Stundenplan
-                  </CardTitle>
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  <Link
+                    href="/dashboard/calendar"
+                    className="text-xs text-primary hover:underline"
+                  >
+                    Ganze Woche anzeigen
+                  </Link>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm">
-                    Nichts zu tun..
-                  </p>
-                  <div className="space-y-3 flex items-center justify-center">
-                    {
-                      /*todayClasses.map((classItem) => (
-                      <div
-                        key={classItem.id}
-                        className="flex items-center justify-between p-2 rounded-lg bg-muted/50"
-                      >
-                        <div className="flex-1">
-                          <p className="font-medium text-card-foreground">
-                            {classItem.subject}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {classItem.time} • {classItem.room}
-                          </p>
-                        </div>
-                        <Badge className={getClassStatus(classItem.status)}>
-                          {classItem.status === "current" ? "Jetzt" : "Bald"}
-                        </Badge>
-                      </div>
-                    ))*/
-                      <Image
-                        src="/kurukuru.gif"
-                        alt="Loading..."
-                        width={200}
-                        height={200}
-                      />
-                    }
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Upcoming Deadlines */}
-              <Card className="bg-card border-border">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-card-foreground">
-                    Anstehende Termine
-                  </CardTitle>
-                  <Bell className="h-4 w-4 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {upcomingDeadlines.map((deadline) => (
-                      <div
-                        key={deadline.id}
-                        className="flex items-center space-x-3 p-2 rounded-lg bg-muted/50"
-                      >
-                        <div
-                          className={`w-3 h-3 rounded-full ${getPriorityColor(
-                            deadline.priority
-                          )}`}
+                <CardContent className="pt-4">
+                  {loading ? (
+                    <div className="flex justify-center py-10">
+                      <Loader2 className="w-8 h-8 animate-spin text-muted-foreground" />
+                    </div>
+                  ) : todayClasses.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center space-y-4 py-8">
+                      <div className="relative">
+                        <Image
+                          src="/kurukuru.gif"
+                          alt="Freizeit"
+                          width={120}
+                          height={120}
+                          className="rounded-full opacity-80"
                         />
-                        <div className="flex-1">
-                          <p className="font-medium text-card-foreground">
-                            {deadline.title}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {deadline.subject} • {deadline.dueDate}
-                          </p>
+                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-1 shadow-lg">
+                          <Sparkles className="w-4 h-4 text-white" />
                         </div>
-                        <ChevronRight className="h-4 w-4 text-muted-foreground" />
                       </div>
-                    ))}
+                      <div className="text-center">
+                        <p className="text-foreground font-semibold">
+                          Keine Vorlesungen heute!
+                        </p>
+                        <p className="text-muted-foreground text-sm">
+                          Zeit für eine kleine Pause oder ein bisschen
+                          Selbststudium.
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {todayClasses.map((classItem) => (
+                        <div
+                          key={classItem.id}
+                          className="flex items-center justify-between p-4 rounded-xl bg-muted/30 border border-border/50 hover:bg-muted/50 transition-all hover:translate-x-1 cursor-pointer"
+                        >
+                          <div className="flex items-center space-x-4">
+                            <div className="flex flex-col items-center justify-center min-w-[60px] p-2 rounded-lg bg-background border border-border/40 shadow-sm">
+                              <span className="text-xs font-bold">
+                                {formatTime(classItem.startTime)}
+                              </span>
+                              <div className="w-full h-[1px] bg-border/40 my-1" />
+                              <span className="text-[10px] text-muted-foreground">
+                                {formatTime(classItem.endTime)}
+                              </span>
+                            </div>
+                            <div>
+                              <p className="font-bold text-foreground">
+                                {classItem.su?.[0]?.longname ||
+                                  classItem.su?.[0]?.name ||
+                                  "Fach"}
+                              </p>
+                              <div className="flex items-center text-xs text-muted-foreground space-x-3 mt-1">
+                                <span className="flex items-center">
+                                  <MapPin className="w-3 h-3 mr-1" />{" "}
+                                  {classItem.ro?.[0]?.name || "K.A."}
+                                </span>
+                                <span className="flex items-center">
+                                  <Users className="w-3 h-3 mr-1" />{" "}
+                                  {classItem.cl?.[0]?.name || "Modul"}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          {classItem.code === "cancelled" ? (
+                            <Badge
+                              variant="destructive"
+                              className="uppercase text-[10px] font-bold"
+                            >
+                              Ausfall
+                            </Badge>
+                          ) : (
+                            <ChevronRight className="h-4 w-4 text-muted-foreground/50" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Enhanced Quick Actions */}
+              <Card className="bg-card border-border shadow-sm">
+                <CardHeader className="pb-3 border-b border-border/40">
+                  <div className="flex items-center space-x-2">
+                    <LayoutGrid className="h-5 w-5 text-primary" />
+                    <CardTitle className="text-lg font-bold">
+                      Schnellzugriff
+                    </CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-4 px-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <Link href="/dashboard/notes">
+                      <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-border/60 bg-muted/20 hover:bg-muted/40 hover:border-primary/50 transition-all cursor-pointer group space-y-2">
+                        <div className="p-3 rounded-full bg-orange-500/10 text-orange-500 group-hover:scale-110 transition-transform shadow-inner">
+                          <Plus className="w-5 h-5" />
+                        </div>
+                        <span className="text-xs font-semibold">
+                          Neue Notiz
+                        </span>
+                      </div>
+                    </Link>
+                    <Link href="/dashboard/classes">
+                      <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-border/60 bg-muted/20 hover:bg-muted/40 hover:border-primary/50 transition-all cursor-pointer group space-y-2">
+                        <div className="p-3 rounded-full bg-blue-500/10 text-blue-500 group-hover:scale-110 transition-transform shadow-inner">
+                          <GraduationCap className="w-5 h-5" />
+                        </div>
+                        <span className="text-xs font-semibold">
+                          Meine Fächer
+                        </span>
+                      </div>
+                    </Link>
+                    <Link href="/dashboard/calendar">
+                      <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-border/60 bg-muted/20 hover:bg-muted/40 hover:border-primary/50 transition-all cursor-pointer group space-y-2">
+                        <div className="p-3 rounded-full bg-green-500/10 text-green-500 group-hover:scale-110 transition-transform shadow-inner">
+                          <Calendar className="w-5 h-5" />
+                        </div>
+                        <span className="text-xs font-semibold">Kalender</span>
+                      </div>
+                    </Link>
+                    <Link href="/dashboard/notes">
+                      <div className="flex flex-col items-center justify-center p-4 rounded-xl border border-border/60 bg-muted/20 hover:bg-muted/40 hover:border-primary/50 transition-all cursor-pointer group space-y-2">
+                        <div className="p-3 rounded-full bg-purple-500/10 text-purple-500 group-hover:scale-110 transition-transform shadow-inner">
+                          <BookOpen className="w-5 h-5" />
+                        </div>
+                        <span className="text-xs font-semibold">Prüfungen</span>
+                      </div>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Recent Notes */}
-              <Card className="bg-card border-border">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-card-foreground">
-                    Letzte Notizen
-                  </CardTitle>
-                  <BookOpen className="h-4 w-4 text-muted-foreground" />
+              {/* Enhanced Recent Notes */}
+              <Card className="bg-card border-border shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-border/40">
+                  <div className="flex items-center space-x-2">
+                    <FileText className="h-5 w-5 text-primary" />
+                    <CardTitle className="text-lg font-bold">
+                      Letzte Notizen
+                    </CardTitle>
+                  </div>
+                  <Link
+                    href="/dashboard/notes"
+                    className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Alle anzeigen
+                  </Link>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {recentNotes.map((note) => (
-                      <div
-                        key={note.id}
-                        className="flex items-center justify-between p-2 rounded-lg bg-muted/50 hover:bg-muted/70 cursor-pointer transition-colors"
+                <CardContent className="pt-4 px-3">
+                  {loading ? (
+                    <div className="flex justify-center py-8">
+                      <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
+                    </div>
+                  ) : recentNotes.length === 0 ? (
+                    <div className="text-center py-8 px-4">
+                      <p className="text-xs text-muted-foreground italic">
+                        Du hast noch keine Notizen erstellt.
+                      </p>
+                      <Button
+                        variant="link"
+                        size="sm"
+                        className="text-primary mt-1 h-auto p-0"
                       >
-                        <div className="flex-1">
-                          <p className="font-medium text-card-foreground">
-                            {note.title}
+                        Jetzt erste Notiz erstellen
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      {recentNotes.map((note) => (
+                        <Link key={note.id} href="/dashboard/notes">
+                          <div className="relative flex items-center justify-between p-3 rounded-lg border border-border/50 bg-muted/20 hover:bg-muted/40 transition-all cursor-pointer group">
+                            {note.subjectColor && (
+                              <div
+                                className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3/4 rounded-r-full"
+                                style={{ backgroundColor: note.subjectColor }}
+                              />
+                            )}
+                            <div className="flex-1 overflow-hidden ml-2">
+                              <p className="font-semibold text-foreground text-xs truncate group-hover:text-primary transition-colors">
+                                {note.title}
+                              </p>
+                              <div className="flex items-center text-[10px] text-muted-foreground mt-0.5 space-x-2">
+                                <span className="truncate max-w-[120px]">
+                                  {note.subjectName}
+                                </span>
+                                <span>•</span>
+                                <span>
+                                  {new Date(note.updatedAt).toLocaleDateString(
+                                    "de-DE",
+                                    { day: "2-digit", month: "2-digit" },
+                                  )}
+                                </span>
+                              </div>
+                            </div>
+                            <ChevronRight className="h-3 w-3 text-muted-foreground/40 group-hover:text-primary transition-colors" />
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Current Subjects Summary */}
+              <Card className="lg:col-span-2 bg-card border-border shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-border/40">
+                  <div className="flex items-center space-x-2">
+                    <ClipboardList className="h-5 w-5 text-primary" />
+                    <CardTitle className="text-lg font-bold">
+                      Aktuelle Module
+                    </CardTitle>
+                  </div>
+                  <Link
+                    href="/dashboard/classes"
+                    className="text-xs text-primary hover:underline"
+                  >
+                    Verwalten
+                  </Link>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {subjects.length > 0 ? (
+                      subjects.slice(0, 6).map((subject) => (
+                        <div
+                          key={subject.id}
+                          className="relative p-3 rounded-xl bg-muted/30 border border-border/40 hover:bg-muted/50 transition-colors group"
+                        >
+                          {subject.backColor && (
+                            <div
+                              className="absolute top-2 right-2 w-2 h-2 rounded-full ring-1 ring-border/50"
+                              style={{
+                                backgroundColor: `#${subject.backColor}`,
+                              }}
+                            />
+                          )}
+                          <p className="font-bold text-xs text-foreground truncate">
+                            {subject.longName}
                           </p>
-                          <p className="text-sm text-muted-foreground">
-                            {note.subject} • {note.lastEdited}
+                          <p className="text-[10px] text-muted-foreground mt-1 font-mono">
+                            {subject.name}
                           </p>
                         </div>
-                        <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                      ))
+                    ) : (
+                      <div className="col-span-full py-6 text-center">
+                        <p className="text-sm text-muted-foreground">
+                          Keine aktiven Module gefunden.
+                        </p>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Study Time This Week */}
-              <Card className="bg-card border-border">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-card-foreground">
-                    Lernzeit diese Woche
-                  </CardTitle>
-                  <Clock className="h-4 w-4 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-card-foreground">
-                        24.5h
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        von 30h Ziel
-                      </p>
-                    </div>
-                    <Progress value={82} className="h-2" />
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Mo-So</span>
-                      <span className="text-green-500">
-                        +2.5h vs. letzte Woche
-                      </span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Quick Actions */}
-              <Card className="bg-card border-border">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-card-foreground">
-                    Schnellaktionen
-                  </CardTitle>
-                  <TrendingUp className="h-4 w-4 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-auto p-3 flex flex-col items-center space-y-1 bg-transparent"
-                    >
-                      <Plus className="h-4 w-4" />
-                      <span className="text-xs">Neue Notiz</span>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-auto p-3 flex flex-col items-center space-y-1 bg-transparent"
-                    >
-                      <Calendar className="h-4 w-4" />
-                      <span className="text-xs">Termin</span>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-auto p-3 flex flex-col items-center space-y-1 bg-transparent"
-                    >
-                      <Target className="h-4 w-4" />
-                      <span className="text-xs">Ziel setzen</span>
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="h-auto p-3 flex flex-col items-center space-y-1 bg-transparent"
-                    >
-                      <BookOpen className="h-4 w-4" />
-                      <span className="text-xs">Lernplan</span>
-                    </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
             </div>
-
-            {/* Weekly Overview Chart */}
-            <Card className="bg-card border-border">
-              <CardHeader>
-                <CardTitle className="text-card-foreground">
-                  Wochenübersicht
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-7 gap-2 text-center">
-                  {["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].map(
-                    (day, index) => (
-                      <div key={day} className="space-y-2">
-                        <p className="text-sm font-medium text-muted-foreground">
-                          {day}
-                        </p>
-                        <div className="h-20 bg-muted/50 rounded-lg flex items-end justify-center p-2">
-                          <div
-                            className="w-full bg-primary rounded-sm"
-                            style={{ height: `${Math.random() * 80 + 20}%` }}
-                          />
-                        </div>
-                        <p className="text-xs text-muted-foreground">
-                          {Math.floor(Math.random() * 5 + 1)}h
-                        </p>
-                      </div>
-                    )
-                  )}
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
 
-        {/* Right Sidebar with Institutional Links */}
-        <div className="w-80 bg-card/50 border-l border-border">
-          <div className="sticky top-0 p-6 space-y-6">
+        {/* Right Sidebar Area */}
+        <div className="w-80 bg-card/50 border-l border-border hidden xl:flex flex-col overflow-y-auto">
+          <div className="p-8 space-y-8">
             <div>
-              <h2 className="text-lg font-semibold text-foreground mb-4">
+              <h2 className="text-lg font-bold text-foreground">
                 Hochschul-Services
               </h2>
-              <p className="text-sm text-muted-foreground mb-6">
-                Schnellzugriff auf wichtige Plattformen und Services deiner
-                Hochschule
+              <p className="text-xs text-muted-foreground mt-1">
+                Wichtige Portale im Schnellzugriff
               </p>
             </div>
 
             {institutionalLinks.map((category) => (
               <div key={category.category} className="space-y-3">
-                <h3 className="text-sm font-medium text-foreground border-b border-border pb-2">
+                <h3 className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest border-b border-border/50 pb-2">
                   {category.category}
                 </h3>
                 <div className="space-y-2">
@@ -543,53 +576,72 @@ export default function Dashboard() {
                     <a
                       key={link.name}
                       href={link.url}
-                      className="flex items-center justify-between p-3 rounded-lg bg-background/50 hover:bg-background/80 transition-colors group cursor-pointer border border-border/50"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between p-3 rounded-xl bg-background/50 border border-border/40 hover:bg-primary/5 hover:border-primary/30 transition-all group cursor-pointer"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="p-2 rounded-md bg-primary/10">
-                          <link.icon className="h-4 w-4 text-primary" />
+                        <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:scale-110 transition-transform">
+                          <link.icon className="h-4 w-4" />
                         </div>
                         <div>
-                          <p className="font-medium text-foreground text-sm">
+                          <p className="font-bold text-foreground text-xs leading-tight">
                             {link.name}
                           </p>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-[10px] text-muted-foreground">
                             {link.description}
                           </p>
                         </div>
                       </div>
-                      <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                      <ExternalLink className="h-3 w-3 text-muted-foreground/50 group-hover:text-primary transition-colors" />
                     </a>
                   ))}
                 </div>
               </div>
             ))}
 
-            {/* Quick Contact Section */}
-            <Card className="bg-background/50 border-border/50">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-foreground">
-                  Schnellkontakt
+            {/* Help & Support Card */}
+            <Card className="bg-primary/5 border-primary/20 shadow-none border-dashed">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-2">
+                  <Bell className="w-3 h-3" />
+                  Support
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="text-xs text-muted-foreground">
-                  <p>Studierendenservice:</p>
-                  <p className="text-foreground">+49 123 456-789</p>
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  <p>IT-Helpdesk:</p>
-                  <p className="text-foreground">helpdesk@uni.de</p>
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  <p>Notfall Campus:</p>
-                  <p className="text-foreground">+49 123 456-911</p>
+              <CardContent className="space-y-4 pt-1">
+                <div className="flex flex-col space-y-3">
+                  <div className="space-y-1">
+                    <p className="text-[10px] text-muted-foreground uppercase font-semibold">
+                      Studierendenservice
+                    </p>
+                    <p className="text-xs font-bold text-foreground">
+                      +49 7431 132-0
+                    </p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-[10px] text-muted-foreground uppercase font-semibold">
+                      IT-Helpdesk
+                    </p>
+                    <p className="text-xs font-bold text-foreground truncate">
+                      it-support@hs-albsig.de
+                    </p>
+                  </div>
+                  <div className="pt-2">
+                    <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-center">
+                      <p className="text-[10px] font-black text-red-600 uppercase tracking-tighter">
+                        Campus Notfall
+                      </p>
+                      <p className="text-sm font-black text-red-700">
+                        +49 7431 132-112
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
