@@ -217,22 +217,26 @@ export function WeekView({ currentDate, classes }: WeekViewProps) {
                     return (
                       <Card
                         key={event.id}
-                        className="absolute p-1 shadow-sm border-l-4 hover:shadow-md transition-shadow cursor-pointer"
+                        className={`absolute p-1 shadow-sm border-l-4 hover:shadow-md transition-shadow cursor-pointer ${
+                          event.isCancelled ? "opacity-60 grayscale-[0.5]" : ""
+                        }`}
                         style={{
                           top: `${top}px`,
                           height: `${height}px`,
                           width: `${width}%`,
                           left: `${left}%`,
-                          borderLeftColor: event.color,
-                          backgroundColor: `${event.color}15`,
+                          borderLeftColor: event.isCancelled ? "#94a3b8" : event.color,
+                          backgroundColor: event.isCancelled ? "#f1f5f9" : `${event.color}15`,
                         }}
                       >
                         <div className="space-y-1 px-1">
                           <div
-                            className="font-medium text-xs truncate"
-                            style={{ color: event.color }}
+                            className={`font-medium text-xs truncate ${
+                              event.isCancelled ? "line-through text-slate-500" : ""
+                            }`}
+                            style={{ color: event.isCancelled ? "#64748b" : event.color }}
                           >
-                            {event.title}
+                            {event.isCancelled ? `[CANCELLED] ${event.title}` : event.title}
                           </div>
                           <div className="flex items-center text-xs text-gray-600 dark:text-gray-400">
                             <Clock className="h-3 w-3 mr-1" />

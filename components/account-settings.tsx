@@ -34,6 +34,7 @@ import {
   School,
   BookOpen,
   X,
+  CalendarDays,
 } from "lucide-react";
 import { useAuthStore } from "@/hooks/auth_hook";
 import {
@@ -47,6 +48,11 @@ import { schools } from "./onboarding-flow";
 import { toast } from "sonner";
 import { studyFields } from "@/types/types";
 
+interface SchoolYear {
+  id: number;
+  name: string;
+}
+
 export function AccountSettings() {
   const { user, loading, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(true);
@@ -56,6 +62,7 @@ export function AccountSettings() {
     text: string;
   } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [schoolYears, setSchoolYears] = useState<SchoolYear[]>([]);
 
   const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
 
@@ -64,7 +71,16 @@ export function AccountSettings() {
     displayName: "",
     schoolName: "",
     studyField: "",
+    defaultSchoolYear: "",
   });
+
+  // Fetch available school years for the selector
+  useEffect(() => {
+    fetch("/api/webuntis/school-years")
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((data: SchoolYear[]) => setSchoolYears(data))
+      .catch((err) => console.error("Error fetching school years:", err));
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -79,6 +95,7 @@ export function AccountSettings() {
       displayName: user.displayName || "",
       schoolName: user.schoolName || "",
       studyField: user.studyField || "",
+      defaultSchoolYear: user.defaultSchoolYear || "",
     });
 
     setIsLoading(false);
@@ -354,6 +371,32 @@ export function AccountSettings() {
                 </SelectContent>
               </Select>
             </div>
+            <div className="space-y-2">
+              <label htmlFor="defaultSchoolYear" className="text-sm font-medium">
+                Default School Year
+              </label>
+              <Select
+                value={formData.defaultSchoolYear}
+                onValueChange={(value) =>
+                  handleInputChange("defaultSchoolYear", value)
+                }
+                disabled={schoolYears.length === 0}
+              >
+                <SelectTrigger className="h-12">
+                  <SelectValue placeholder="Select school year…" />
+                </SelectTrigger>
+                <SelectContent>
+                  {schoolYears.map((year) => (
+                    <SelectItem key={year.id} value={year.name}>
+                      {year.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground">
+                This school year will be pre-selected when you open the calendar.
+              </p>
+            </div>
           </div>
 
           <div className="flex justify-end">
@@ -462,6 +505,17 @@ export function AccountSettings() {
                 {user.studyField}
               </p>
             </div>
+            {user.defaultSchoolYear && (
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <CalendarDays className="h-4 w-4 text-gray-500" />
+                  <span className="text-sm font-medium">Default School Year</span>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {user.defaultSchoolYear}
+                </p>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>

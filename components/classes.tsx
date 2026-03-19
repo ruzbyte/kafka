@@ -5,6 +5,7 @@ import type { UserSubject } from "@/types/subjects";
 import { getUserSubjects } from "@/lib/subjects";
 import { ClassesList } from "@/components/classes-list";
 import { SubjectSelector } from "@/components/subject-selector";
+import { ClassSelector } from "@/components/class-selector";
 import {
   Card,
   CardContent,
@@ -69,6 +70,18 @@ export default function Classes() {
         </div>
 
         <div className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">My Semesters</CardTitle>
+              <CardDescription>
+                Update which classes you are currently attending
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ClassSelector />
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Add New Subject</CardTitle>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, ChevronRight, Calendar, Grid3X3 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar, Grid3X3, Loader2 } from "lucide-react";
 import { WeekView } from "@/components/week-view";
 import { MonthView } from "@/components/month-view";
 import type { CalendarEvent } from "@/lib/webuntis-utils";
@@ -12,11 +12,12 @@ import { ICSLinkDialog } from "./ics-link-dialog";
 
 interface CalendarViewProps {
   classes: CalendarEvent[];
+  loading?: boolean;
 }
 
 type ViewMode = "week" | "month";
 
-export function CalendarView({ classes }: CalendarViewProps) {
+export function CalendarView({ classes, loading = false }: CalendarViewProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<ViewMode>("week");
 
@@ -65,6 +66,7 @@ export function CalendarView({ classes }: CalendarViewProps) {
 
   // Get unique activity types for legend
   const activityTypes = Array.from(new Set(classes.map((c) => c.type)));
+  const hasCancelled = classes.some((c) => c.isCancelled);
 
   return (
     <div className="space-y-4">
@@ -126,7 +128,11 @@ export function CalendarView({ classes }: CalendarViewProps) {
       {/* Calendar Content */}
       <Card className="flex-1">
         <CardContent className="p-0">
-          {viewMode === "week" ? (
+          {loading ? (
+            <div className="flex items-center justify-center h-64">
+              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+            </div>
+          ) : viewMode === "week" ? (
             <WeekView currentDate={currentDate} classes={classes} />
           ) : (
             <MonthView currentDate={currentDate} classes={classes} />
@@ -137,7 +143,7 @@ export function CalendarView({ classes }: CalendarViewProps) {
       {/* Legend */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-sm font-medium">Activity Types</CardTitle>
+          <CardTitle className="text-sm font-medium">Activity Types & Status</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
@@ -157,14 +163,20 @@ export function CalendarView({ classes }: CalendarViewProps) {
               };
 
               return (
-                <Badge key={type} variant="outline" className={colorMap[type]}>
+                <Badge key={type} variant="outline" className={colorMap[type as keyof typeof colorMap]}>
                   <div
-                    className={`w-2 h-2 ${bgColorMap[type]} rounded-full mr-2`}
+                    className={`w-2 h-2 ${bgColorMap[type as keyof typeof bgColorMap]} rounded-full mr-2`}
                   ></div>
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Badge>
               );
             })}
+            {hasCancelled && (
+              <Badge variant="outline" className="border-slate-400 text-slate-500 line-through">
+                <div className="w-2 h-2 bg-slate-400 rounded-full mr-2"></div>
+                Cancelled
+              </Badge>
+            )}
           </div>
         </CardContent>
       </Card>

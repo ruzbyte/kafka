@@ -15,9 +15,11 @@ export interface User {
   createdAt?: string;
   schoolName?: schoolType;
   studyField?: studyFieldType;
+  enrolledClasses?: string[];
   onboardingCompleted?: boolean;
   avatarUrl?: string;
   updatedAt?: string;
+  defaultSchoolYear?: string;
 }
 
 interface AuthState {
@@ -70,8 +72,10 @@ export const useAuthStore = create<AuthState>((set, get) => {
                   updatedAt: data.updatedAt,
                   schoolName: data.schoolName,
                   studyField: data.studyField,
+                  enrolledClasses: data.enrolledClasses,
                   onboardingCompleted: data.onboardingCompleted,
                   avatarUrl: data.avatarUrl || state.user!.avatarUrl,
+                  defaultSchoolYear: data.defaultSchoolYear,
                 },
               }));
             }
