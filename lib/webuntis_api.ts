@@ -191,6 +191,7 @@ export class WebUntisAPI {
   async getTimetableForClass(
     classId: number,
     year: SchoolYear | null = this.currentSchoolyear,
+    range?: { startDate: Date; endDate: Date },
   ) {
     if (!this.currentSchoolyear) {
       this.currentSchoolyear = await this.getCurrentSchoolYear();
@@ -199,12 +200,10 @@ export class WebUntisAPI {
     if (!year) {
       year = this.currentSchoolyear;
     }
-    // Ensure dates are within the current school year
-    const startDate = new Date(year.startDate);
-    const endDate = new Date(year.endDate);
 
-    // Use the school year's date range instead of arbitrary 3 months
-    // Returns LESSONS, su: subject: ro: room, te: teacher, cl: class
+    const startDate = range?.startDate || new Date(year.startDate);
+    const endDate = range?.endDate || new Date(year.endDate);
+
     return await this.webuntis.getTimetableForRange(
       startDate,
       endDate,
@@ -217,7 +216,56 @@ export class WebUntisAPI {
     this.currentSchoolyear = year;
   }
 
-  async getTimeTableByClasses(
+  async getLessonsForRange(
+    startDate: Date,
+    endDate: Date,
+    studyField?: studyFieldType,
+    enrolledClasses?: string[],
+  ) {
+    const classList = await this.getClasses();
+    let filteredClasses;
+
+    if (enrolledClasses && enrolledClasses.length > 0) {
+      filteredClasses = classList.filter((c) =>
+        enrolledClasses.includes(c.name),
+      );
+    } else if (studyField && studyField !== "Other") {
+      const class_key = FieldMap[studyField];
+      filteredClasses = classList.filter((c) => c.name.startsWith(class_key));
+    } else {
+      filteredClasses = classList.filter((c) =>
+        ["TI", "ITS", "WIN"].some((prefix) => c.name.startsWith(prefix)),
+      );
+    }
+
+    const timetablePromises = filteredClasses.map((c) =>
+      this.getTimetableForRange(startDate, endDate, c.id).catch((err) => {
+        console.error(
+          `Failed to fetch timetable for class ${c.name} (${c.id}):`,
+          err,
+        );
+        return [] as Lesson[];
+      }),
+    );
+
+    const results = await Promise.all(timetablePromises);
+    return results.flat();
+  }
+
+  async getTimetableForRange(
+    startDate: Date,
+    endDate: Date,
+    classId: number,
+  ): Promise<Lesson[]> {
+    return await this.webuntis.getTimetableForRange(
+      startDate,
+      endDate,
+      classId,
+      WebUntis.TYPES.CLASS,
+    );
+  }
+
+  async getAllLessonsForSchoolYear(
     enrolledSubjects: UserSubject[],
     studyField: studyFieldType,
     enrolledClasses?: string[],

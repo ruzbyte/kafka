@@ -8,22 +8,34 @@ export async function POST(request: Request) {
       schoolYear: schoolYearName,
       studyField,
       enrolledClasses,
+      startDate: startDateStr,
+      endDate: endDateStr,
     } = await request.json();
 
     const schoolYear = schoolYearName
       ? await webuntisApi.getSchoolYearByName(schoolYearName)
       : await webuntisApi.getCurrentSchoolYear();
 
-    const allLessons = await webuntisApi.getAllLessonsForSchoolYear(
-      schoolYear,
-      studyField,
-      enrolledClasses,
-    );
+    let lessons;
+    if (startDateStr && endDateStr) {
+      lessons = await webuntisApi.getLessonsForRange(
+        new Date(startDateStr),
+        new Date(endDateStr),
+        studyField,
+        enrolledClasses,
+      );
+    } else {
+      lessons = await webuntisApi.getAllLessonsForSchoolYear(
+        schoolYear,
+        studyField,
+        enrolledClasses,
+      );
+    }
 
     const subjectIds = new Set(subjects.map((s: { id: number }) => s.id));
     const uniqueLessonsMap = new Map();
 
-    for (const lesson of allLessons) {
+    for (const lesson of lessons) {
       if (
         lesson.su &&
         lesson.su.some((su: { id: number }) => subjectIds.has(su.id))
