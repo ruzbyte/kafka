@@ -23,7 +23,10 @@ import {
   convertWebUntisLessons,
   groupConsecutiveLessons,
 } from "@/lib/webuntis-utils";
-import { getUserSubjects } from "@/lib/subjects";
+import {
+  getEnrolledAndUncompletedSubjects,
+  getUserSubjects,
+} from "@/lib/subjects";
 import { useAuthStore } from "@/hooks/auth_hook";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -78,15 +81,19 @@ export default function CalendarPage() {
       setLoadingLessons(true);
       document.title = `${user?.displayName || "User"} | Kalender - Kafka`;
 
-      getUserSubjects(user.uid).then((subjects) => {
+      getEnrolledAndUncompletedSubjects(user.uid).then((subjects) => {
         fetch("/api/webuntis", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ subjects, schoolYear: yearName }),
-        })
-          .then((response) => {
+          body: JSON.stringify({
+            subjects,
+            schoolYear: yearName,
+            studyField: user.studyField,
+            enrolledClasses: user.enrolledClasses,
+          }),
+        })          .then((response) => {
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
@@ -103,7 +110,7 @@ export default function CalendarPage() {
           .finally(() => setLoadingLessons(false));
       });
     },
-    [user?.uid, user?.displayName]
+    [user?.uid, user?.displayName],
   );
 
   // Fetch lessons whenever the selected school year or user changes
@@ -173,10 +180,7 @@ export default function CalendarPage() {
       </header>
 
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-        <CalendarView
-          classes={lessons || []}
-          loading={loadingLessons}
-        />
+        <CalendarView classes={lessons || []} loading={loadingLessons} />
       </div>
     </>
   );

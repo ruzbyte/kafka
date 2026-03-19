@@ -13,6 +13,7 @@ export interface WebUntisLesson {
   lsnumber?: number;
   sg?: string;
   activityType: string;
+  code?: "cancelled" | "irregular" | string;
 }
 
 export interface CalendarEvent {
@@ -27,6 +28,7 @@ export interface CalendarEvent {
   classes: string[];
   subject: string;
   activityType: string;
+  isCancelled: boolean;
 }
 
 // Convert WebUntis date format (YYYYMMDD) to Date object
@@ -110,6 +112,10 @@ export function convertWebUntisToCalendarEvent(
   const room = lesson.ro[0]?.name || lesson.ro[0]?.longname || "Unknown Room";
   const classes = lesson.kl.map((kl) => kl.name);
 
+  const isCancelled =
+    lesson.code === "cancelled" ||
+    lesson.activityType?.toLowerCase() === "entfall";
+
   return {
     id: lesson.id,
     title: subject,
@@ -122,6 +128,7 @@ export function convertWebUntisToCalendarEvent(
     classes,
     subject,
     activityType: lesson.activityType,
+    isCancelled,
   };
 }
 
@@ -155,7 +162,8 @@ export function groupConsecutiveLessons(
       currentGroupEnd.getTime() === currentStart.getTime() &&
       currentGroup.subject === current.subject &&
       currentGroup.professor === current.professor &&
-      currentGroup.location === current.location
+      currentGroup.location === current.location &&
+      currentGroup.isCancelled === current.isCancelled
     ) {
       // Extend the current group
       currentGroup = {

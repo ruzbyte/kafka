@@ -66,6 +66,7 @@ export function CalendarView({ classes, loading = false }: CalendarViewProps) {
 
   // Get unique activity types for legend
   const activityTypes = Array.from(new Set(classes.map((c) => c.type)));
+  const hasCancelled = classes.some((c) => c.isCancelled);
 
   return (
     <div className="space-y-4">
@@ -142,7 +143,7 @@ export function CalendarView({ classes, loading = false }: CalendarViewProps) {
       {/* Legend */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-sm font-medium">Activity Types</CardTitle>
+          <CardTitle className="text-sm font-medium">Activity Types & Status</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
@@ -162,14 +163,20 @@ export function CalendarView({ classes, loading = false }: CalendarViewProps) {
               };
 
               return (
-                <Badge key={type} variant="outline" className={colorMap[type]}>
+                <Badge key={type} variant="outline" className={colorMap[type as keyof typeof colorMap]}>
                   <div
-                    className={`w-2 h-2 ${bgColorMap[type]} rounded-full mr-2`}
+                    className={`w-2 h-2 ${bgColorMap[type as keyof typeof bgColorMap]} rounded-full mr-2`}
                   ></div>
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Badge>
               );
             })}
+            {hasCancelled && (
+              <Badge variant="outline" className="border-slate-400 text-slate-500 line-through">
+                <div className="w-2 h-2 bg-slate-400 rounded-full mr-2"></div>
+                Cancelled
+              </Badge>
+            )}
           </div>
         </CardContent>
       </Card>

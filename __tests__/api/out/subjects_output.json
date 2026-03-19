@@ -77,6 +77,13 @@
     "active": true
   },
   {
+    "id": 4437,
+    "name": "PPD-ENG Ilias",
+    "longName": "Propädeutikum ENG Selbstlernkurs Ilias",
+    "alternateName": "",
+    "active": true
+  },
+  {
     "id": 490,
     "name": "Test",
     "longName": "Test",
@@ -205,7 +212,7 @@
     "alternateName": "",
     "active": true,
     "foreColor": "ffffff",
-    "backColor": "808000"
+    "backColor": "8080ff"
   },
   {
     "id": 385,
@@ -623,8 +630,8 @@
     "longName": "Datenbanken 2",
     "alternateName": "",
     "active": true,
-    "foreColor": "ffffff",
-    "backColor": "008080"
+    "foreColor": "000000",
+    "backColor": "ff8000"
   },
   {
     "id": 289,
@@ -798,15 +805,6 @@
     "backColor": "00ffff"
   },
   {
-    "id": 193,
-    "name": "ELA",
-    "longName": "Elektrische Antriebe",
-    "alternateName": "",
-    "active": true,
-    "foreColor": "000000",
-    "backColor": "33bdff"
-  },
-  {
     "id": 341,
     "name": "ElectDes",
     "longName": "WPM Electronic Design Automation",
@@ -912,7 +910,7 @@
     "alternateName": "",
     "active": true,
     "foreColor": "000000",
-    "backColor": "c0c0c0"
+    "backColor": "ffff00"
   },
   {
     "id": 338,
@@ -1046,15 +1044,6 @@
     "active": true,
     "foreColor": "000000",
     "backColor": "00b3b3"
-  },
-  {
-    "id": 238,
-    "name": "FM 6",
-    "longName": "Füge und Montagetechnik",
-    "alternateName": "",
-    "active": true,
-    "foreColor": "000000",
-    "backColor": "007bb7"
   },
   {
     "id": 255,
@@ -3544,8 +3533,8 @@
     "longName": "Theoretische Informatik",
     "alternateName": "",
     "active": true,
-    "foreColor": "000000",
-    "backColor": "8080ff"
+    "foreColor": "ffffff",
+    "backColor": "055365"
   },
   {
     "id": 153,
@@ -4125,11 +4114,9 @@
   {
     "id": 214,
     "name": "WebAnw",
-    "longName": "Web-basierte Anwendungen",
+    "longName": "Web Anwendungen",
     "alternateName": "",
-    "active": true,
-    "foreColor": "000000",
-    "backColor": "00ff80"
+    "active": true
   },
   {
     "id": 64,
@@ -8808,9 +8795,11 @@
   {
     "id": 1008,
     "name": "WPM_VirtKonz",
-    "longName": "WPM Virtualisierung und Virtualisierungskonzepte",
+    "longName": "WPM_Virtualisierung&Virtualisierungskonzepte",
     "alternateName": "",
-    "active": true
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "a92ceb"
   },
   {
     "id": 1009,
@@ -8930,7 +8919,9 @@
     "name": "WebAnw2",
     "longName": "Web Anwendungen 2",
     "alternateName": "",
-    "active": true
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "ffff00"
   },
   {
     "id": 1023,
@@ -15093,7 +15084,7 @@
     "alternateName": "",
     "active": true,
     "foreColor": "ffffff",
-    "backColor": "800080"
+    "backColor": "000080"
   },
   {
     "id": 3676,
@@ -15490,8 +15481,8 @@
     "longName": "WPF-DE: (I)Iot - Industrial Internet of Things",
     "alternateName": "",
     "active": true,
-    "foreColor": "000000",
-    "backColor": "ffffff"
+    "foreColor": "ffffff",
+    "backColor": "3d0080"
   },
   {
     "id": 3809,
@@ -15652,21 +15643,27 @@
     "name": "MobSysClou",
     "longName": "Mobile Systeme und Cloud",
     "alternateName": "",
-    "active": true
+    "active": true,
+    "foreColor": "4da9ff",
+    "backColor": "ffffff"
   },
   {
     "id": 3864,
     "name": "MobClouFor",
     "longName": "Mobile und Cloud Forensik",
     "alternateName": "",
-    "active": true
+    "active": true,
+    "foreColor": "4da9ff",
+    "backColor": "ffffff"
   },
   {
     "id": 3867,
     "name": "IT-SichMan",
     "longName": "IT-Sicherheitsmanagement",
     "alternateName": "",
-    "active": true
+    "active": true,
+    "foreColor": "4da9ff",
+    "backColor": "ffffff"
   },
   {
     "id": 3870,
@@ -16638,9 +16635,11 @@
   {
     "id": 4237,
     "name": "WPM_GrundQuant",
-    "longName": "WPM Grundlagen der Quantuminformatik",
+    "longName": "Grundlagen der Quantuminformatik und Quantum Key Distribution",
     "alternateName": "",
-    "active": true
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "71e0ff"
   },
   {
     "id": 4240,
@@ -16695,7 +16694,7 @@
   {
     "id": 4256,
     "name": "Gründung",
-    "longName": "Gründung",
+    "longName": "Gründung & Entrepreneurship",
     "alternateName": "",
     "active": true
   },
@@ -16755,7 +16754,7 @@
   {
     "id": 4280,
     "name": "AppliedScientificRes",
-    "longName": "WPF-Prod: Applied Scientific Research (DPM)",
+    "longName": "WPF Applied Scientific Research (DPM+IAI)",
     "alternateName": "",
     "active": true,
     "foreColor": "ffffff",
@@ -16875,7 +16874,7 @@
   {
     "id": 4319,
     "name": "WPB2:Entreprship-Tei",
-    "longName": "Wahlpflichtblock 2: Entrepreneurship - Teil B",
+    "longName": "Wahlpflichtblock 2: Entrepreneurship",
     "alternateName": "",
     "active": true,
     "foreColor": "000000",
@@ -16923,11 +16922,11 @@
   {
     "id": 4337,
     "name": "RPA and AI-Automatio",
-    "longName": "RPA and AI-Automation (WPF)",
+    "longName": "WPF-DE: RPA and AI-Automation",
     "alternateName": "",
     "active": true,
     "foreColor": "ffffff",
-    "backColor": "008000"
+    "backColor": "008080"
   },
   {
     "id": 4340,
@@ -16941,7 +16940,7 @@
   {
     "id": 4343,
     "name": "Global Value Chain M",
-    "longName": "Global Value Chain Management  - IAI",
+    "longName": "CES: Global Value Chain Management",
     "alternateName": "",
     "active": true,
     "foreColor": "000000",
@@ -16968,7 +16967,7 @@
   {
     "id": 4352,
     "name": "Appl. Computer Visio",
-    "longName": "Applied Computer Vision - IAI",
+    "longName": "CES: Applied Computer Vision - IAI",
     "alternateName": "",
     "active": true,
     "foreColor": "000000",
@@ -17045,7 +17044,7 @@
   {
     "id": 4379,
     "name": "Python Programming -",
-    "longName": "Python Programming -Fundamentals (IAI)",
+    "longName": "CES: Python Programming -Fundamentals (IAI)",
     "alternateName": "",
     "active": true,
     "foreColor": "000000",
@@ -17063,7 +17062,7 @@
   {
     "id": 4385,
     "name": "Innovationsmethode T",
-    "longName": "Innovationsmethode TRIZ",
+    "longName": "WPF-DE: Innovationsmethode TRIZ",
     "alternateName": "",
     "active": true,
     "foreColor": "ffffff",
@@ -17090,10 +17089,699 @@
   {
     "id": 4394,
     "name": "WPM_AdvPent",
-    "longName": "Advanced Pentesting",
+    "longName": "WPM Advanced Pentesting",
     "alternateName": "",
     "active": true,
     "foreColor": "000000",
     "backColor": "617fb2"
+  },
+  {
+    "id": 4397,
+    "name": "WPM_KIGov",
+    "longName": "WPM KI Governance",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "7e7467"
+  },
+  {
+    "id": 4400,
+    "name": "LLM and Agentics",
+    "longName": "CES: LLM and Agentics",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "c0ffa0"
+  },
+  {
+    "id": 4402,
+    "name": "German for IAI (A1)",
+    "longName": "CES: German for IAI students (A1)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "c0ffa0"
+  },
+  {
+    "id": 4405,
+    "name": "Tuorium Physik",
+    "longName": "Tuorium Physik",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "7ec1ff"
+  },
+  {
+    "id": 4408,
+    "name": "WPM_LeadCyber",
+    "longName": "WPM Leadership in Cybercrisis Situation",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4411,
+    "name": "WPM_AIGovComp",
+    "longName": "WPM AI Governance, AI Compliance und AI Security Engineering",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "7e7467"
+  },
+  {
+    "id": 4412,
+    "name": "Tut. ADBWL",
+    "longName": "Tutorium Allgemeine und Digitale BWL",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "3bd4ff"
+  },
+  {
+    "id": 4414,
+    "name": "OpenSourceIntel",
+    "longName": "Open Source Intelligence",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4417,
+    "name": "INF-Gr.1",
+    "longName": "Informatik-Grundlagen - Gruppe 1",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "ffff80"
+  },
+  {
+    "id": 4420,
+    "name": "INF-Gr.2",
+    "longName": "Informatik-Grundlagen Gruppe 2",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "ffff80"
+  },
+  {
+    "id": 4421,
+    "name": "I+F FUSION BLOCK",
+    "longName": "I+F FUSION BLOCK",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "8dd9b7"
+  },
+  {
+    "id": 4424,
+    "name": "I+F Online Shoedog",
+    "longName": "I+F Online Shoedog",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "acd86e"
+  },
+  {
+    "id": 4425,
+    "name": "YKK-Workshop",
+    "longName": "YKK-Workshop",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "d8cd6e"
+  },
+  {
+    "id": 4428,
+    "name": "YKK-Workshop Prakt",
+    "longName": "YKK-Workshop Prakt",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "d8ad6e"
+  },
+  {
+    "id": 4430,
+    "name": "Pr_RechTech",
+    "longName": "Praktikum Rechnertechnik",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "ff8000"
+  },
+  {
+    "id": 4433,
+    "name": "RechTech",
+    "longName": "Rechnertechnik",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "ff8000"
+  },
+  {
+    "id": 4436,
+    "name": "CBR GROUP INFO",
+    "longName": "CBR GROUP INFO",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "d1b67f"
+  },
+  {
+    "id": 4439,
+    "name": "Phys.-Techn. Chemie",
+    "longName": "Phys.-Techn. Chemie",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4442,
+    "name": "Grundl. E-Technik",
+    "longName": "Grundl. E-Technik",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4445,
+    "name": "Recyling v. Werkstof",
+    "longName": "Recyling v. Werkstof",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4448,
+    "name": "Keramische u. Verbun",
+    "longName": "Keramische u. Verbun",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4449,
+    "name": "DigitalTechnology & ",
+    "longName": "Digital Technology and Management (IAI)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4452,
+    "name": "Operational Excellen",
+    "longName": "Operational Excellence (IAI)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4455,
+    "name": "Agentic AI",
+    "longName": "Wahlpflichtblock 1: Agentic AI",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8787ff"
+  },
+  {
+    "id": 4458,
+    "name": "IP Tex Übung",
+    "longName": "IP Tex Übung",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "a8a8ff"
+  },
+  {
+    "id": 4459,
+    "name": "Mathe_1",
+    "longName": "Mathematik 1",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "f3f1fe"
+  },
+  {
+    "id": 4462,
+    "name": "WPM_ApplAI",
+    "longName": "WPM_Applied AI",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "804040"
+  },
+  {
+    "id": 4465,
+    "name": "TP - Teil B",
+    "longName": "Technologiepraktikum - Teil B",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "ffff80"
+  },
+  {
+    "id": 4468,
+    "name": "Pj_HumIT-Sec",
+    "longName": "Projekt Human Factors in IT-Security",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4471,
+    "name": "German for IAI (Begi",
+    "longName": "CES: German for IAI students (Beginners)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "c0ffa0"
+  },
+  {
+    "id": 4474,
+    "name": "Project AI-DE - part",
+    "longName": "Project - AI and Data Engineering (theoretical introduction)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "c0ffa0"
+  },
+  {
+    "id": 4477,
+    "name": "Op.Excellence-PartA",
+    "longName": "Operational Excellence - Part A (Tas)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4480,
+    "name": "Project IO&Transform",
+    "longName": "Project IO&Transformation - Project B5 (Bosch-Rexroth)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4483,
+    "name": "Adv. German for IAI ",
+    "longName": "CES: German for IAI students (Advanced beginners)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4486,
+    "name": "Development of AI-Al",
+    "longName": "CES: Development of AI-Algorithm",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4489,
+    "name": "EinfKI",
+    "longName": "Einführung KI und Datenmanagemnt",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "f2c0c4"
+  },
+  {
+    "id": 4492,
+    "name": "WPF Masterclass Circ",
+    "longName": "WPF Masterclass Circ",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "f6c0eb"
+  },
+  {
+    "id": 4495,
+    "name": "Op.Excellence-PartB",
+    "longName": "Operational Excellence - Part B (Weschta)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4498,
+    "name": "WPM_VertSys:Git2Bloc",
+    "longName": "WPM Verteilte Systeme: von Git zu Blockchain",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "d7c3fc"
+  },
+  {
+    "id": 4501,
+    "name": "Introduct.SoftwareEn",
+    "longName": "CES: Introduction to Software Engineering",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4504,
+    "name": "Reinforcement Learni",
+    "longName": "CES: Reinforcement Learning",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4507,
+    "name": "Internat.Leadership ",
+    "longName": "CES: International Leadership of Projects",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4510,
+    "name": "WPM_AdvSecAnal",
+    "longName": "WPM Advanced Security Analytics",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "c6e3ff"
+  },
+  {
+    "id": 4512,
+    "name": "WPM-DE:DatBMng_Fund",
+    "longName": "WPM-Data Engineering: Datenbankmanagement-Fundamentals",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "008000"
+  },
+  {
+    "id": 4515,
+    "name": "ProjectCons_Trumpf_D",
+    "longName": "Project Consulting: Trumpf (DEC)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4518,
+    "name": "NG DataWareh&BigData",
+    "longName": "WPM-DE: Next-Gen Data Warehousing & Big Data Processing",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4521,
+    "name": "DE-Analysis&Dashboar",
+    "longName": "WPM-Data Engineering: Data Engineering, Analysis and Dashboarding",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4522,
+    "name": "Proj.IO&Transf.-Agil",
+    "longName": "Project Industrial Operations and Transformation (Agile PM)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4525,
+    "name": "Proj.B1- IO&Transf./",
+    "longName": "Project B1-IO&Transformation-Vantive)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4528,
+    "name": "Proj.B2- IO&Transf./",
+    "longName": "Project IO&Transformation - Project B2 (LGI-Chatbot)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4531,
+    "name": "Proj.B3- IO&Transf./",
+    "longName": "Project IO&Transformation - Project B3 (Gühring)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4534,
+    "name": "Proj.B4- IO&Transf./",
+    "longName": "Project IO&Transformation - Project B4 (Bosch-Rexroth)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4537,
+    "name": "Proj.B5- IO&Transf./",
+    "longName": "Project IO&Transformation - Project B5 (plus10)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4539,
+    "name": "LSST_TeilA:LeanProdu",
+    "longName": "LeanSixSigmaTools- Teil A: LeanProduction",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "400080"
+  },
+  {
+    "id": 4542,
+    "name": "G1-LSST_TeilA:Yellow",
+    "longName": "G1- LeanSixSigmaTools_Teil A: Yellow Belt Seminar",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "400080"
+  },
+  {
+    "id": 4545,
+    "name": "G2-LSST-TeilA:Yellow",
+    "longName": "G2-LeanSixSigmaTools-Teil A: Yellow Belt Seminar",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "400080"
+  },
+  {
+    "id": 4548,
+    "name": "LSS-Tools_Teil B",
+    "longName": "LeanSixSigmaTools - Teil B",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "400080"
+  },
+  {
+    "id": 4551,
+    "name": "Proj.Prod_B-Rexroth",
+    "longName": "Project Production: Gruppe Bosch-Rexroth (DPM)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "400080"
+  },
+  {
+    "id": 4554,
+    "name": "ProjectProd_Schwer/K",
+    "longName": "Project Production: Gruppen Schwer/ Küfner Sommer (DPM)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "400080"
+  },
+  {
+    "id": 4557,
+    "name": "DataWarehousing&Proc",
+    "longName": "WPM-DE: Data Warehousing & Processing",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4560,
+    "name": "Proj.IO&T-PartA:Intr",
+    "longName": "Project IO&Transformation-Part A: Introduction to Software Engineering",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "8000ff"
+  },
+  {
+    "id": 4561,
+    "name": "Mathe_2",
+    "longName": "Mathematik_2",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "d89f4b"
+  },
+  {
+    "id": 4564,
+    "name": "INF- Python",
+    "longName": "Informatik - Python",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "d89f4b"
+  },
+  {
+    "id": 4565,
+    "name": "Fremdsprache",
+    "longName": "Fremdsprache",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "ffff80"
+  },
+  {
+    "id": 4568,
+    "name": "Workshop: Get that J",
+    "longName": "Workshop: Get that J",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4571,
+    "name": "Workshop für Lehrend",
+    "longName": "Workshop für Lehrend",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4574,
+    "name": "Welcome&Introduction",
+    "longName": "Welcome and Introduction event",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "ede9be"
+  },
+  {
+    "id": 4577,
+    "name": "Intrapren-Proj_Janet",
+    "longName": "Intrapreneurship_Projekte_JanetCarruthers",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4580,
+    "name": "Intrapren-Proj_Andre",
+    "longName": "Intrapreneurship_Projekte_AndrewCarruthers",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4583,
+    "name": "G1-LLM and Agentics",
+    "longName": "CES: LLM and Agentics - Group 1",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "000000",
+    "backColor": "c0ffa0"
+  },
+  {
+    "id": 4586,
+    "name": "G2-LLM&Agentics",
+    "longName": "CES LLM and Agentics - Group 2",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "000080"
+  },
+  {
+    "id": 4588,
+    "name": "Intrapren-Theory:Par",
+    "longName": "Intrapreneurship-Theory: Part A",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4591,
+    "name": "Intrapren-Proj_Gr2",
+    "longName": "Intrapreneurship_Projekte_Group2",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4594,
+    "name": "PSA_Summit",
+    "longName": "PSA Development & Skill Summit",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4597,
+    "name": "Intrapreneurship-The",
+    "longName": "Intrapreneurship-Theory - Part A",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4599,
+    "name": "Intrapren-Proj_Gr1",
+    "longName": "Intrapreneurship_Projects_Group 1",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "800080"
+  },
+  {
+    "id": 4602,
+    "name": "FaserRT",
+    "longName": "Faseranalytik_RT",
+    "alternateName": "",
+    "active": true
+  },
+  {
+    "id": 4604,
+    "name": "ProjectProduction-Al",
+    "longName": "Project Production: Alle Gruppen (Sommer)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "400080"
+  },
+  {
+    "id": 4607,
+    "name": "ProjectProduct.-Alle",
+    "longName": "Project Production: Alle Gruppen (Sommer)",
+    "alternateName": "",
+    "active": true,
+    "foreColor": "ffffff",
+    "backColor": "400080"
   }
 ]

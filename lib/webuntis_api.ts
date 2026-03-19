@@ -1,14 +1,13 @@
 import { Subject, UserSubject } from "@/types/subjects";
 import { FieldMap, studyFieldType } from "@/types/types";
 import { Lesson, SchoolYear, WebUntis } from "webuntis";
-import { writeFileSync } from "fs";
 
 // Overwrite in .env file
 const default_settings = {
   school: process.env.WEBUNTIS_SCHOOL || "HS-Albstadt",
   username: process.env.WEBUNTIS_USERNAME || "ITS1",
   password: process.env.WEBUNTIS_PASSWORD || "",
-  server: process.env.WEBUNTIS_SERVER || "hepta.webuntis.com",
+  server: process.env.WEBUNTIS_SERVER || "hs-albstadt.webuntis.com",
   useragent: process.env.WEBUNTIS_USERAGENT || "WebUntis/1.0",
 };
 
@@ -17,6 +16,8 @@ export class WebUntisAPI {
   private static instance: WebUntisAPI;
   private currentSchoolyear: SchoolYear | null = null;
   private validateSession: boolean = true;
+  private dataCache: Map<string, { timestamp: number; data: any }> = new Map();
+  private CACHE_TTL = 3600 * 1000; // 1 hour
 
   static getInstance() {
     if (!WebUntisAPI.instance) {
@@ -29,7 +30,7 @@ export class WebUntisAPI {
     school: string = default_settings.school,
     username: string = default_settings.username,
     password: string = default_settings.password,
-    server: string = default_settings.server
+    server: string = default_settings.server,
   ) {
     this.webuntis = new WebUntis(school, username, password, server);
   }
@@ -37,8 +38,12 @@ export class WebUntisAPI {
   // login für WebUntis
   async login() {
     try {
-      if (!(await this.webuntis.validateSession())) {
+      // Small optimization: if we have some data in cache, session might be valid
+      // but let's be safe and check validateSession but maybe not every 5 seconds
+      const isSessionValid = await this.webuntis.validateSession();
+      if (!isSessionValid) {
         await this.webuntis.login();
+        console.log("Logged in to WebUntis.");
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -55,7 +60,7 @@ export class WebUntisAPI {
   // aktuelles Semester
   async getCurrentSchoolYear() {
     const schoolYear = await this.webuntis.getCurrentSchoolyear(
-      this.validateSession
+      this.validateSession,
     );
     if (schoolYear.id === null || schoolYear.id === undefined) {
       throw new Error("No current school year found.");
@@ -65,12 +70,23 @@ export class WebUntisAPI {
   }
 
   async getSchoolYears() {
-    return await this.webuntis.getSchoolyears(true);
+    const cacheKey = "schoolYears";
+    const cached = this.dataCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < this.CACHE_TTL) {
+      return cached.data;
+    }
+
+    const years = await this.webuntis.getSchoolyears(true);
+    this.dataCache.set(cacheKey, {
+      timestamp: Date.now(),
+      data: years,
+    });
+    return years;
   }
 
   async getSchoolYearByName(name: string) {
     const years = await this.getSchoolYears();
-    const year = years.find((y) => y.name === name);
+    const year = years.find((y: SchoolYear) => y.name === name);
     if (!year) {
       throw new Error(`School year with name ${name} not found.`);
     }
@@ -82,9 +98,12 @@ export class WebUntisAPI {
   }
 
   async getClasses() {
+    if (!this.currentSchoolyear) {
+      this.currentSchoolyear = await this.getCurrentSchoolYear();
+    }
     return await this.webuntis.getClasses(
       this.validateSession,
-      this.currentSchoolyear!.id
+      this.currentSchoolyear.id,
     );
   }
 
@@ -92,8 +111,69 @@ export class WebUntisAPI {
     return await this.webuntis.getTeachers(this.validateSession);
   }
 
-  async getSubjects() {
-    return await this.webuntis.getSubjects(this.validateSession);
+  async getSubjectsFiltered(
+    studyField?: studyFieldType,
+    enrolledClasses?: string[],
+  ) {
+    if (!this.currentSchoolyear) {
+      this.currentSchoolyear = await this.getCurrentSchoolYear();
+    }
+
+    const classList = await this.getClasses();
+    let filteredClasses;
+
+    if (enrolledClasses && enrolledClasses.length > 0) {
+      filteredClasses = classList.filter((c) =>
+        enrolledClasses.includes(c.name),
+      );
+    } else if (studyField && studyField !== "Other") {
+      const class_key = FieldMap[studyField];
+      filteredClasses = classList.filter((c) => c.name.startsWith(class_key));
+    } else {
+      // For now Only TI-*, ITS-*, WIN-*
+      filteredClasses = classList.filter((c) =>
+        ["TI", "ITS", "WIN"].some((prefix) => c.name.startsWith(prefix)),
+      );
+    }
+
+    // Fetch timetables for these classes to see which subjects actually appear
+    const results = await Promise.all(
+      filteredClasses.map((c) =>
+        this.getTimetableForClass(c.id).catch((err) => {
+          console.error(
+            `Failed to fetch timetable for class ${c.name} (${c.id}):`,
+            err,
+          );
+          return [] as Lesson[];
+        }),
+      ),
+    );
+
+    const timetableEntries = results.flat();
+    const subjectIdsInTimetable = new Set<number>();
+
+    for (const entry of timetableEntries) {
+      if (entry.su && entry.su.length > 0) {
+        for (const s of entry.su) {
+          subjectIdsInTimetable.add(s.id);
+        }
+      }
+    }
+
+    // Now fetch ALL subjects to get their full metadata (longName, colors, etc.)
+    const allSubjects = await this.webuntis.getSubjects(this.validateSession);
+
+    // Filter allSubjects by the IDs we found in the timetable
+    const filteredSubjects = allSubjects
+      .filter((s) => subjectIdsInTimetable.has(s.id))
+      .map((s) => ({
+        ...s,
+        longName: s.longName || (s as any).longname || s.name,
+        alternateName: s.alternateName || "",
+        active: s.active ?? true,
+      }));
+
+    return filteredSubjects;
   }
 
   async getRooms() {
@@ -105,8 +185,8 @@ export class WebUntisAPI {
   }
 
   async getTimetableForClass(
-    classId: number = 5549,
-    year: SchoolYear | null = this.currentSchoolyear
+    classId: number,
+    year: SchoolYear | null = this.currentSchoolyear,
   ) {
     if (!this.currentSchoolyear) {
       this.currentSchoolyear = await this.getCurrentSchoolYear();
@@ -125,7 +205,7 @@ export class WebUntisAPI {
       startDate,
       endDate,
       classId,
-      WebUntis.TYPES.CLASS
+      WebUntis.TYPES.CLASS,
     );
   }
 
@@ -135,7 +215,8 @@ export class WebUntisAPI {
 
   async getTimeTableByClasses(
     enrolledSubjects: UserSubject[],
-    studyField: studyFieldType
+    studyField: studyFieldType,
+    enrolledClasses?: string[],
   ) {
     this.currentSchoolyear = await this.getSchoolYearByName("2025/2026");
 
@@ -144,54 +225,101 @@ export class WebUntisAPI {
     }
 
     const classList = await this.getClasses();
-    const class_key = FieldMap[studyField]; // "TI", "WI", "ITS"
+    const class_key = FieldMap[studyField];
     if (!class_key) {
       throw new Error(`Invalid study field: ${studyField}`);
     }
-    const filteredClasses = classList.filter((c) =>
-      c.name.startsWith(class_key)
-    );
 
-    const subjects = await this.getSubjects();
-    const enrolled_untis_subjects_ids = subjects
-      .filter((s) => enrolledSubjects.some((es) => es.id === s.id))
-      .map((s) => s.id);
-
-    let timetableEntries: Lesson[] = [];
-    for (const classId of filteredClasses.map((c) => c.id)) {
-      const entries = await this.getTimetableForClass(classId);
-      timetableEntries = timetableEntries.concat(entries);
+    let filteredClasses;
+    if (enrolledClasses && enrolledClasses.length > 0) {
+      // Use explicit classes if provided
+      filteredClasses = classList.filter((c) =>
+        enrolledClasses.includes(c.name),
+      );
+    } else {
+      // Fallback to all classes for study field
+      filteredClasses = classList.filter((c) => c.name.startsWith(class_key));
     }
+
+    const results = await Promise.all(
+      filteredClasses.map((c) =>
+        this.getTimetableForClass(c.id).catch((err) => {
+          console.error(
+            `Failed to fetch timetable for class ${c.name} (${c.id}):`,
+            err,
+          );
+          return [] as Lesson[];
+        }),
+      ),
+    );
+    const timetableEntries = results.flat();
 
     const uncompleted_subjects = enrolledSubjects.filter((s) => !s.completed);
 
     const filteredTimetable = timetableEntries.filter((entry) =>
-      uncompleted_subjects.some((us) => us.id === entry.su[0]?.id)
+      uncompleted_subjects.some((us) => us.id === entry.su[0]?.id),
     );
 
     return filteredTimetable;
   }
 
-  async getAllLessonsForSchoolYear(year: SchoolYear = this.currentSchoolyear!) {
+  async getAllLessonsForSchoolYear(
+    year: SchoolYear = this.currentSchoolyear!,
+    studyField?: studyFieldType,
+    enrolledClasses?: string[],
+  ) {
     if (!year) {
       year = await this.getCurrentSchoolYear();
     }
 
     this.setCurrentSchoolyear(year);
 
+    // Check cache (we might need a more granular cache if we filter by field/classes,
+    // but for now let's use a global one or just ignore cache if filters are present
+    // or include filters in cache key)
+    const cacheKey = `lessons_${year.name}_${studyField || "all"}_${(enrolledClasses || []).join(",")}`;
+    const cached = this.dataCache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < this.CACHE_TTL) {
+      console.log(`Using cached lessons for ${year.name}`);
+      return cached.data;
+    }
+
     const classList = await this.getClasses();
 
-    // For now Only TI-*, ITS-*, WIN-*
-    const filteredClasses = classList.filter((c) =>
-      ["TI", "ITS", "WIN"].some((prefix) => c.name.startsWith(prefix))
+    let filteredClasses;
+
+    if (enrolledClasses && enrolledClasses.length > 0) {
+      filteredClasses = classList.filter((c) =>
+        enrolledClasses.includes(c.name),
+      );
+    } else if (studyField && studyField !== "Other") {
+      const class_key = FieldMap[studyField];
+      filteredClasses = classList.filter((c) => c.name.startsWith(class_key));
+    } else {
+      // For now Only TI-*, ITS-*, WIN-*
+      filteredClasses = classList.filter((c) =>
+        ["TI", "ITS", "WIN"].some((prefix) => c.name.startsWith(prefix)),
+      );
+    }
+
+    const timetablePromises = filteredClasses.map((c) =>
+      this.getTimetableForClass(c.id, year).catch((err) => {
+        console.error(
+          `Failed to fetch timetable for class ${c.name} (${c.id}):`,
+          err,
+        );
+        return [] as Lesson[];
+      }),
     );
 
-    let timetableEntries: Lesson[] = [];
+    const results = await Promise.all(timetablePromises);
+    const timetableEntries = results.flat();
 
-    for (const classId of filteredClasses.map((c) => c.id)) {
-      const entries = await this.getTimetableForClass(classId);
-      timetableEntries = timetableEntries.concat(entries);
-    }
+    // Store in cache
+    this.dataCache.set(cacheKey, {
+      timestamp: Date.now(),
+      data: timetableEntries,
+    });
 
     return timetableEntries;
   }

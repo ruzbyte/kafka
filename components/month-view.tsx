@@ -105,15 +105,27 @@ export function MonthView({ currentDate, classes }: MonthViewProps) {
                   {dayClasses.slice(0, 3).map((classEvent) => (
                     <div
                       key={classEvent.id}
-                      className="text-xs p-1 rounded truncate cursor-pointer hover:opacity-80"
+                      className={`text-xs p-1 rounded truncate cursor-pointer hover:opacity-80 ${
+                        classEvent.isCancelled ? "opacity-60 grayscale-[0.5]" : ""
+                      }`}
                       style={{
-                        backgroundColor: `${classEvent.color}20`,
-                        color: classEvent.color,
-                        borderLeft: `3px solid ${classEvent.color}`,
+                        backgroundColor: classEvent.isCancelled
+                          ? "#f1f5f9"
+                          : `${classEvent.color}20`,
+                        color: classEvent.isCancelled ? "#64748b" : classEvent.color,
+                        borderLeft: `3px solid ${
+                          classEvent.isCancelled ? "#94a3b8" : classEvent.color
+                        }`,
+                        textDecoration: classEvent.isCancelled
+                          ? "line-through"
+                          : "none",
                       }}
-                      title={`${classEvent.title} - ${classEvent.location} - ${classEvent.professor}`}
+                      title={`${classEvent.isCancelled ? "[CANCELLED] " : ""}${
+                        classEvent.title
+                      } - ${classEvent.location} - ${classEvent.professor}`}
                     >
                       <div className="font-medium truncate">
+                        {classEvent.isCancelled ? "[X] " : ""}
                         {classEvent.title}
                       </div>
                       <div className="text-xs opacity-75">

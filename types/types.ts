@@ -12,7 +12,7 @@ export const studyFields = [
 
 export const FieldMap: { [key: string]: string } = {
   "Technische Informatik": "TI",
-  Wirtschaftsinformatik: "WI",
+  Wirtschaftsinformatik: "WIN",
   "IT-Security": "ITS",
 };
 

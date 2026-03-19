@@ -116,13 +116,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -158,13 +161,16 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 90,
+        "orgname": "205-135"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -200,13 +206,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -242,13 +251,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -284,13 +296,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -326,13 +341,16 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 90,
+        "orgname": "205-135"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -368,13 +386,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -410,13 +431,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -452,13 +476,16 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 90,
+        "orgname": "205-135"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -494,13 +521,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -536,13 +566,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -578,13 +611,16 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 90,
+        "orgname": "205-135"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -620,13 +656,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -662,13 +701,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -704,13 +746,16 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 90,
+        "orgname": "205-135"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -746,13 +791,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -788,13 +836,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -830,13 +881,16 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 90,
+        "orgname": "205-135"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -872,13 +926,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -914,13 +971,16 @@
     ],
     "ro": [
       {
-        "id": 88,
-        "name": "205-018",
-        "longname": "Vorlesungsraum 018"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 88,
+        "orgname": "205-018"
       }
     ],
     "lstext": "21200",
     "lsnumber": 125300,
+    "info": "Raum 205-325",
     "activityType": "Unterricht"
   },
   {
@@ -956,13 +1016,16 @@
     ],
     "ro": [
       {
-        "id": 96,
-        "name": "210-002",
-        "longname": "PC-Pool"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 96,
+        "orgname": "210-002"
       }
     ],
     "lstext": "Gruppe 1",
     "lsnumber": 7200,
+    "info": "Raum 205-325",
     "sg": "betsich1",
     "activityType": "Unterricht"
   },
@@ -999,13 +1062,16 @@
     ],
     "ro": [
       {
-        "id": 96,
-        "name": "210-002",
-        "longname": "PC-Pool"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 96,
+        "orgname": "210-002"
       }
     ],
     "lstext": "Gruppe 1",
     "lsnumber": 7200,
+    "info": "Raum 205-325",
     "sg": "betsich1",
     "activityType": "Unterricht"
   },
@@ -1042,13 +1108,16 @@
     ],
     "ro": [
       {
-        "id": 96,
-        "name": "210-002",
-        "longname": "PC-Pool"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 96,
+        "orgname": "210-002"
       }
     ],
     "lstext": "Gruppe 1",
     "lsnumber": 7200,
+    "info": "Raum 205-325",
     "sg": "betsich1",
     "activityType": "Unterricht"
   },
@@ -1085,13 +1154,16 @@
     ],
     "ro": [
       {
-        "id": 96,
-        "name": "210-002",
-        "longname": "PC-Pool"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 96,
+        "orgname": "210-002"
       }
     ],
     "lstext": "Gruppe 1",
     "lsnumber": 7200,
+    "info": "Raum 205-325",
     "sg": "betsich1",
     "activityType": "Unterricht"
   },
@@ -1100,6 +1172,7 @@
     "date": 20251126,
     "startTime": 1400,
     "endTime": 1530,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -1128,13 +1201,16 @@
     ],
     "ro": [
       {
-        "id": 96,
-        "name": "210-002",
-        "longname": "PC-Pool"
+        "id": 0,
+        "name": "---",
+        "longname": "",
+        "orgid": 96,
+        "orgname": "210-002"
       }
     ],
     "lstext": "Gruppe 1",
     "lsnumber": 7200,
+    "info": "Raum 205-325",
     "sg": "betsich1",
     "activityType": "Unterricht"
   },
@@ -1171,13 +1247,16 @@
     ],
     "ro": [
       {
-        "id": 96,
-        "name": "210-002",
-        "longname": "PC-Pool"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 96,
+        "orgname": "210-002"
       }
     ],
     "lstext": "Gruppe 1",
     "lsnumber": 7200,
+    "info": "Raum 205-325",
     "sg": "betsich1",
     "activityType": "Unterricht"
   },
@@ -1214,21 +1293,24 @@
     ],
     "ro": [
       {
-        "id": 96,
-        "name": "210-002",
-        "longname": "PC-Pool"
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor",
+        "orgid": 96,
+        "orgname": "210-002"
       }
     ],
     "lstext": "Gruppe 1",
     "lsnumber": 7200,
+    "info": "Raum 205-325",
     "sg": "betsich1",
     "activityType": "Unterricht"
   },
   {
-    "id": 547494,
+    "id": 568948,
     "date": 20250930,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1252,9 +1334,11 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 96,
+        "name": "210-002",
+        "longname": "PC-Pool",
+        "orgid": 95,
+        "orgname": "210-003"
       }
     ],
     "lstext": "22400",
@@ -1262,10 +1346,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547497,
+    "id": 568951,
     "date": 20251007,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1289,9 +1373,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1299,10 +1383,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547500,
+    "id": 568954,
     "date": 20251014,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1326,9 +1410,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1336,10 +1420,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547503,
+    "id": 568957,
     "date": 20251021,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1363,9 +1447,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1373,10 +1457,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547506,
+    "id": 568960,
     "date": 20251028,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1400,9 +1484,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1410,10 +1494,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547509,
+    "id": 568963,
     "date": 20251104,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1437,9 +1521,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1447,10 +1531,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547512,
+    "id": 568966,
     "date": 20251111,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1474,9 +1558,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1484,10 +1568,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547515,
+    "id": 568969,
     "date": 20251118,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1511,9 +1595,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1521,10 +1605,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547518,
+    "id": 568972,
     "date": 20251125,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1548,9 +1632,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1558,10 +1642,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547521,
+    "id": 568975,
     "date": 20251202,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1585,9 +1669,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1595,10 +1679,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547524,
+    "id": 568978,
     "date": 20251209,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1622,9 +1706,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1632,10 +1716,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547527,
+    "id": 568981,
     "date": 20251216,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1659,9 +1743,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1669,10 +1753,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547530,
+    "id": 568984,
     "date": 20251223,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1696,9 +1780,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1706,10 +1790,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547533,
+    "id": 568987,
     "date": 20260113,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1733,9 +1817,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1743,10 +1827,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547536,
+    "id": 568990,
     "date": 20260120,
-    "startTime": 945,
-    "endTime": 1115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -1770,9 +1854,9 @@
     ],
     "ro": [
       {
-        "id": 94,
-        "name": "210-010",
-        "longname": "Labor Programmentwicklung"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22400",
@@ -1969,6 +2053,7 @@
     "date": 20251106,
     "startTime": 1130,
     "endTime": 1300,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5549,
@@ -3075,10 +3160,49 @@
     "activityType": "Unterricht"
   },
   {
+    "id": 573434,
+    "date": 20251103,
+    "startTime": 1545,
+    "endTime": 1715,
+    "code": "irregular",
+    "kl": [
+      {
+        "id": 5549,
+        "name": "TI-4_22.2",
+        "longname": "TI-4_22.2"
+      }
+    ],
+    "te": [
+      {
+        "id": 435,
+        "name": "RembLu",
+        "longname": "Rembold"
+      }
+    ],
+    "su": [
+      {
+        "id": 122,
+        "name": "Pr_ErDiSys",
+        "longname": "Praktikum Ereignisdiskrete Systeme"
+      }
+    ],
+    "ro": [
+      {
+        "id": 90,
+        "name": "205-135",
+        "longname": "Vorlesungsraum 135"
+      }
+    ],
+    "lstext": "21520",
+    "lsnumber": 126200,
+    "activityType": "Unterricht"
+  },
+  {
     "id": 547644,
     "date": 20251106,
     "startTime": 1400,
     "endTime": 1530,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5549,
@@ -3264,6 +3388,7 @@
     "date": 20251211,
     "startTime": 1400,
     "endTime": 1530,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5549,
@@ -3290,6 +3415,44 @@
         "id": 96,
         "name": "210-002",
         "longname": "PC-Pool"
+      }
+    ],
+    "lstext": "21520",
+    "lsnumber": 126200,
+    "activityType": "Unterricht"
+  },
+  {
+    "id": 574108,
+    "date": 20251217,
+    "startTime": 945,
+    "endTime": 1115,
+    "code": "irregular",
+    "kl": [
+      {
+        "id": 5549,
+        "name": "TI-4_22.2",
+        "longname": "TI-4_22.2"
+      }
+    ],
+    "te": [
+      {
+        "id": 435,
+        "name": "RembLu",
+        "longname": "Rembold"
+      }
+    ],
+    "su": [
+      {
+        "id": 122,
+        "name": "Pr_ErDiSys",
+        "longname": "Praktikum Ereignisdiskrete Systeme"
+      }
+    ],
+    "ro": [
+      {
+        "id": 99,
+        "name": "210-102",
+        "longname": "IT-Security/Netzwerke"
       }
     ],
     "lstext": "21520",
@@ -3445,10 +3608,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547674,
-    "date": 20251001,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571606,
+    "date": 20251002,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3492,10 +3655,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547677,
-    "date": 20251008,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571609,
+    "date": 20251009,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3539,10 +3702,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547680,
-    "date": 20251015,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571612,
+    "date": 20251016,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3586,10 +3749,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547683,
-    "date": 20251022,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571615,
+    "date": 20251023,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3633,10 +3796,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547686,
-    "date": 20251029,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571618,
+    "date": 20251030,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3680,10 +3843,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547689,
-    "date": 20251105,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571621,
+    "date": 20251106,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3727,10 +3890,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547692,
-    "date": 20251112,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571624,
+    "date": 20251113,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3774,10 +3937,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547695,
-    "date": 20251119,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571627,
+    "date": 20251120,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3821,10 +3984,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547698,
-    "date": 20251126,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571630,
+    "date": 20251127,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3868,10 +4031,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547701,
-    "date": 20251203,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571633,
+    "date": 20251204,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3915,10 +4078,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547704,
-    "date": 20251210,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571636,
+    "date": 20251211,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -3962,10 +4125,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547707,
-    "date": 20251217,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571639,
+    "date": 20251218,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -4009,10 +4172,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547710,
-    "date": 20260107,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571642,
+    "date": 20260108,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -4056,10 +4219,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547713,
-    "date": 20260114,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571645,
+    "date": 20260115,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -4103,10 +4266,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 547716,
-    "date": 20260121,
-    "startTime": 1545,
-    "endTime": 1715,
+    "id": 571648,
+    "date": 20260122,
+    "startTime": 1730,
+    "endTime": 1900,
     "kl": [
       {
         "id": 5546,
@@ -4626,13 +4789,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4663,13 +4820,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4700,13 +4851,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4737,13 +4882,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4774,13 +4913,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4804,6 +4937,7 @@
     "date": 20251106,
     "startTime": 1400,
     "endTime": 1530,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5549,
@@ -4811,13 +4945,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4848,13 +4976,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4885,13 +5007,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4922,13 +5038,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4959,13 +5069,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -4996,13 +5100,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -5033,13 +5131,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -5070,13 +5162,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -5107,13 +5193,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -5144,13 +5224,7 @@
         "longname": "TI-4_22.2"
       }
     ],
-    "te": [
-      {
-        "id": 172,
-        "name": "KnobAn",
-        "longname": "Knoblauch"
-      }
-    ],
+    "te": [],
     "su": [
       {
         "id": 294,
@@ -5170,10 +5244,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553008,
+    "id": 568993,
     "date": 20250930,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5197,9 +5271,11 @@
     ],
     "ro": [
       {
-        "id": 95,
-        "name": "210-003",
-        "longname": "Labor Informationstechnik"
+        "id": 96,
+        "name": "210-002",
+        "longname": "PC-Pool",
+        "orgid": 95,
+        "orgname": "210-003"
       }
     ],
     "lstext": "22100",
@@ -5207,10 +5283,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553011,
+    "id": 568996,
     "date": 20251007,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5244,10 +5320,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553014,
+    "id": 568999,
     "date": 20251014,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5281,10 +5357,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553017,
+    "id": 569002,
     "date": 20251021,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5318,10 +5394,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553020,
+    "id": 569005,
     "date": 20251028,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5355,10 +5431,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553023,
+    "id": 569008,
     "date": 20251104,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5392,10 +5468,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553026,
+    "id": 569011,
     "date": 20251111,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5429,10 +5505,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553029,
+    "id": 569014,
     "date": 20251118,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5466,10 +5542,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553032,
+    "id": 569017,
     "date": 20251125,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5503,10 +5579,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553035,
+    "id": 569020,
     "date": 20251202,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5540,10 +5616,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553038,
+    "id": 569023,
     "date": 20251209,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5577,10 +5653,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553041,
+    "id": 569026,
     "date": 20251216,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5614,10 +5690,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553044,
+    "id": 569029,
     "date": 20251223,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5651,10 +5727,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553047,
+    "id": 569032,
     "date": 20260113,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5688,10 +5764,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 553050,
+    "id": 569035,
     "date": 20260120,
-    "startTime": 800,
-    "endTime": 930,
+    "startTime": 1400,
+    "endTime": 1530,
     "kl": [
       {
         "id": 5549,
@@ -5725,10 +5801,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554502,
-    "date": 20251001,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569038,
+    "date": 20251002,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -5752,9 +5828,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -5762,10 +5838,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554505,
-    "date": 20251008,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569041,
+    "date": 20251009,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -5789,9 +5865,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -5799,10 +5875,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554508,
-    "date": 20251015,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569044,
+    "date": 20251016,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -5826,9 +5902,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -5836,10 +5912,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554511,
-    "date": 20251022,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569047,
+    "date": 20251023,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -5863,9 +5939,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -5873,10 +5949,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554514,
-    "date": 20251029,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569050,
+    "date": 20251030,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -5900,9 +5976,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -5910,10 +5986,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554517,
-    "date": 20251105,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569053,
+    "date": 20251106,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -5937,9 +6013,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -5947,10 +6023,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554520,
-    "date": 20251112,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569056,
+    "date": 20251113,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -5974,9 +6050,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -5984,10 +6060,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554523,
-    "date": 20251119,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569059,
+    "date": 20251120,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -6011,9 +6087,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -6021,10 +6097,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554526,
-    "date": 20251126,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569062,
+    "date": 20251127,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -6048,9 +6124,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -6058,10 +6134,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554529,
-    "date": 20251203,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569065,
+    "date": 20251204,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -6085,9 +6161,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -6095,10 +6171,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554532,
-    "date": 20251210,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569068,
+    "date": 20251211,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -6122,9 +6198,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -6132,10 +6208,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554535,
-    "date": 20251217,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569071,
+    "date": 20251218,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -6159,9 +6235,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -6169,10 +6245,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554538,
-    "date": 20260107,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569074,
+    "date": 20260108,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -6196,9 +6272,11 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 98,
+        "name": "210-103",
+        "longname": "Besprechungsraum",
+        "orgid": 95,
+        "orgname": "210-003"
       }
     ],
     "lstext": "22100",
@@ -6206,10 +6284,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554541,
-    "date": 20260114,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569077,
+    "date": 20260115,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -6233,9 +6311,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -6243,10 +6321,10 @@
     "activityType": "Unterricht"
   },
   {
-    "id": 554544,
-    "date": 20260121,
-    "startTime": 800,
-    "endTime": 930,
+    "id": 569080,
+    "date": 20260122,
+    "startTime": 1545,
+    "endTime": 1715,
     "kl": [
       {
         "id": 5549,
@@ -6270,9 +6348,9 @@
     ],
     "ro": [
       {
-        "id": 90,
-        "name": "205-135",
-        "longname": "Vorlesungsraum 135"
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
       }
     ],
     "lstext": "22100",
@@ -6378,6 +6456,7 @@
     "date": 20251013,
     "startTime": 1130,
     "endTime": 1300,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -6646,9 +6725,11 @@
     ],
     "ro": [
       {
-        "id": 2,
-        "name": "201-006",
-        "longname": "Vorlesungsraum"
+        "id": 4,
+        "name": "201-018",
+        "longname": "Vorlesungsraum",
+        "orgid": 2,
+        "orgname": "201-006"
       }
     ],
     "lstext": "22300",
@@ -6693,9 +6774,11 @@
     ],
     "ro": [
       {
-        "id": 2,
-        "name": "201-006",
-        "longname": "Vorlesungsraum"
+        "id": 4,
+        "name": "201-018",
+        "longname": "Vorlesungsraum",
+        "orgid": 2,
+        "orgname": "201-006"
       }
     ],
     "lstext": "22300",
@@ -6740,9 +6823,11 @@
     ],
     "ro": [
       {
-        "id": 2,
-        "name": "201-006",
-        "longname": "Vorlesungsraum"
+        "id": 4,
+        "name": "201-018",
+        "longname": "Vorlesungsraum",
+        "orgid": 2,
+        "orgname": "201-006"
       }
     ],
     "lstext": "22300",
@@ -6787,9 +6872,59 @@
     ],
     "ro": [
       {
-        "id": 2,
-        "name": "201-006",
-        "longname": "Vorlesungsraum"
+        "id": 4,
+        "name": "201-018",
+        "longname": "Vorlesungsraum",
+        "orgid": 2,
+        "orgname": "201-006"
+      }
+    ],
+    "lstext": "22300",
+    "lsnumber": 125400,
+    "activityType": "Unterricht"
+  },
+  {
+    "id": 575722,
+    "date": 20251215,
+    "startTime": 945,
+    "endTime": 1115,
+    "code": "irregular",
+    "kl": [
+      {
+        "id": 5546,
+        "name": "ITS-4_22.2",
+        "longname": "ITS-4_22.2"
+      },
+      {
+        "id": 5549,
+        "name": "TI-4_22.2",
+        "longname": "TI-4_22.2"
+      },
+      {
+        "id": 5552,
+        "name": "WIN-4_22.2",
+        "longname": "WIN-4_22.2"
+      }
+    ],
+    "te": [
+      {
+        "id": 374,
+        "name": "EpplSv",
+        "longname": "Eppler"
+      }
+    ],
+    "su": [
+      {
+        "id": 1024,
+        "name": "SoftEng",
+        "longname": "Software Engineering"
+      }
+    ],
+    "ro": [
+      {
+        "id": 30,
+        "name": "201-109",
+        "longname": "Seminarraum"
       }
     ],
     "lstext": "22300",
@@ -6834,9 +6969,11 @@
     ],
     "ro": [
       {
-        "id": 2,
-        "name": "201-006",
-        "longname": "Vorlesungsraum"
+        "id": 30,
+        "name": "201-109",
+        "longname": "Seminarraum",
+        "orgid": 2,
+        "orgname": "201-006"
       }
     ],
     "lstext": "22300",
@@ -6848,6 +6985,57 @@
     "date": 20251222,
     "startTime": 1130,
     "endTime": 1300,
+    "code": "cancelled",
+    "kl": [
+      {
+        "id": 5546,
+        "name": "ITS-4_22.2",
+        "longname": "ITS-4_22.2"
+      },
+      {
+        "id": 5549,
+        "name": "TI-4_22.2",
+        "longname": "TI-4_22.2"
+      },
+      {
+        "id": 5552,
+        "name": "WIN-4_22.2",
+        "longname": "WIN-4_22.2"
+      }
+    ],
+    "te": [
+      {
+        "id": 374,
+        "name": "EpplSv",
+        "longname": "Eppler"
+      }
+    ],
+    "su": [
+      {
+        "id": 1024,
+        "name": "SoftEng",
+        "longname": "Software Engineering"
+      }
+    ],
+    "ro": [
+      {
+        "id": 4,
+        "name": "201-018",
+        "longname": "Vorlesungsraum",
+        "orgid": 2,
+        "orgname": "201-006"
+      }
+    ],
+    "lstext": "22300",
+    "lsnumber": 125400,
+    "activityType": "Unterricht"
+  },
+  {
+    "id": 575890,
+    "date": 20260112,
+    "startTime": 945,
+    "endTime": 1115,
+    "code": "irregular",
     "kl": [
       {
         "id": 5546,
@@ -6883,7 +7071,9 @@
       {
         "id": 2,
         "name": "201-006",
-        "longname": "Vorlesungsraum"
+        "longname": "Vorlesungsraum",
+        "orgid": 4,
+        "orgname": "201-018"
       }
     ],
     "lstext": "22300",
@@ -8023,6 +8213,7 @@
     "date": 20251215,
     "startTime": 800,
     "endTime": 930,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -8056,9 +8247,11 @@
     ],
     "ro": [
       {
-        "id": 4,
-        "name": "201-018",
-        "longname": "Vorlesungsraum"
+        "id": 30,
+        "name": "201-109",
+        "longname": "Seminarraum",
+        "orgid": 4,
+        "orgname": "201-018"
       }
     ],
     "lstext": "22000",
@@ -8070,6 +8263,7 @@
     "date": 20251215,
     "startTime": 945,
     "endTime": 1115,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -8103,9 +8297,11 @@
     ],
     "ro": [
       {
-        "id": 4,
-        "name": "201-018",
-        "longname": "Vorlesungsraum"
+        "id": 30,
+        "name": "201-109",
+        "longname": "Seminarraum",
+        "orgid": 4,
+        "orgname": "201-018"
       }
     ],
     "lstext": "22000",
@@ -8117,6 +8313,7 @@
     "date": 20251222,
     "startTime": 800,
     "endTime": 930,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -8164,6 +8361,7 @@
     "date": 20251222,
     "startTime": 945,
     "endTime": 1115,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -8211,6 +8409,7 @@
     "date": 20260112,
     "startTime": 800,
     "endTime": 930,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -8258,6 +8457,7 @@
     "date": 20260112,
     "startTime": 945,
     "endTime": 1115,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -8305,6 +8505,7 @@
     "date": 20260119,
     "startTime": 800,
     "endTime": 930,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -8352,6 +8553,7 @@
     "date": 20260119,
     "startTime": 945,
     "endTime": 1115,
+    "code": "cancelled",
     "kl": [
       {
         "id": 5546,
@@ -8687,6 +8889,56 @@
     "date": 20251217,
     "startTime": 945,
     "endTime": 1115,
+    "code": "cancelled",
+    "kl": [
+      {
+        "id": 5546,
+        "name": "ITS-4_22.2",
+        "longname": "ITS-4_22.2"
+      },
+      {
+        "id": 5549,
+        "name": "TI-4_22.2",
+        "longname": "TI-4_22.2"
+      },
+      {
+        "id": 5552,
+        "name": "WIN-4_22.2",
+        "longname": "WIN-4_22.2"
+      }
+    ],
+    "te": [
+      {
+        "id": 209,
+        "name": "KutiRo",
+        "longname": "Kuti"
+      }
+    ],
+    "su": [
+      {
+        "id": 4325,
+        "name": "Pr_WebAnw 2",
+        "longname": "Praktikum Web Anwendungen 2"
+      }
+    ],
+    "ro": [
+      {
+        "id": 5,
+        "name": "201-116",
+        "longname": "PC-Pool"
+      }
+    ],
+    "lstext": "Gruppe 1",
+    "lsnumber": 35500,
+    "sg": "web2c",
+    "activityType": "Unterricht"
+  },
+  {
+    "id": 573750,
+    "date": 20251217,
+    "startTime": 1545,
+    "endTime": 1715,
+    "code": "irregular",
     "kl": [
       {
         "id": 5546,
@@ -8777,5 +9029,142 @@
     "lsnumber": 35500,
     "sg": "web2c",
     "activityType": "Unterricht"
+  },
+  {
+    "id": 573673,
+    "date": 20251205,
+    "startTime": 945,
+    "endTime": 1115,
+    "lstype": "uk",
+    "kl": [
+      {
+        "id": 5537,
+        "name": "ITS-3",
+        "longname": "ITS-3"
+      },
+      {
+        "id": 5540,
+        "name": "TI-3",
+        "longname": "TI-3"
+      },
+      {
+        "id": 5543,
+        "name": "WIN-3",
+        "longname": "WIN-3"
+      },
+      {
+        "id": 5546,
+        "name": "ITS-4_22.2",
+        "longname": "ITS-4_22.2"
+      },
+      {
+        "id": 5549,
+        "name": "TI-4_22.2",
+        "longname": "TI-4_22.2"
+      },
+      {
+        "id": 5552,
+        "name": "WIN-4_22.2",
+        "longname": "WIN-4_22.2"
+      }
+    ],
+    "te": [
+      {
+        "id": 657,
+        "name": "HenrCh",
+        "longname": "Henrich"
+      }
+    ],
+    "su": [],
+    "ro": [
+      {
+        "id": 90,
+        "name": "205-135",
+        "longname": "Vorlesungsraum 135"
+      }
+    ],
+    "lstext": "Infoveranstaltung - Prof. Dr. Henrich",
+    "lsnumber": 9396494,
+    "bkRemark": "Infoveranstaltung - Prof. Dr. Henrich",
+    "activityType": "Sonderveranstaltung"
+  },
+  {
+    "id": 573915,
+    "date": 20251126,
+    "startTime": 1400,
+    "endTime": 1530,
+    "lstype": "uk",
+    "kl": [
+      {
+        "id": 5546,
+        "name": "ITS-4_22.2",
+        "longname": "ITS-4_22.2"
+      },
+      {
+        "id": 5549,
+        "name": "TI-4_22.2",
+        "longname": "TI-4_22.2"
+      }
+    ],
+    "te": [
+      {
+        "id": 177,
+        "name": "RembDe",
+        "longname": "Rembold"
+      }
+    ],
+    "su": [
+      {
+        "id": 113,
+        "name": "Pr_BetSich",
+        "longname": "Praktikum Betriebssicherheit"
+      }
+    ],
+    "ro": [
+      {
+        "id": 245,
+        "name": "205-325",
+        "longname": "IT-Sec Labor"
+      }
+    ],
+    "lsnumber": 9447394,
+    "activityType": "Praktikum"
+  },
+  {
+    "id": 573438,
+    "date": 20251107,
+    "startTime": 945,
+    "endTime": 1115,
+    "lstype": "uk",
+    "kl": [
+      {
+        "id": 5549,
+        "name": "TI-4_22.2",
+        "longname": "TI-4_22.2"
+      }
+    ],
+    "te": [
+      {
+        "id": 435,
+        "name": "RembLu",
+        "longname": "Rembold"
+      }
+    ],
+    "su": [
+      {
+        "id": 122,
+        "name": "Pr_ErDiSys",
+        "longname": "Praktikum Ereignisdiskrete Systeme"
+      }
+    ],
+    "ro": [
+      {
+        "id": 95,
+        "name": "210-003",
+        "longname": "Labor Informationstechnik"
+      }
+    ],
+    "lsnumber": 9351394,
+    "activityType": "Praktikum"
   }
 ]

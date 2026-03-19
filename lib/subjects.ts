@@ -1,4 +1,4 @@
-import type { Subject, UserSubject } from "@/types/subjects";
+import type { UserSubject } from "@/types/subjects";
 import { db } from "@/lib/firebase";
 import {
   collection,
@@ -7,33 +7,12 @@ import {
   getDocs,
   setDoc,
   updateDoc,
-  writeBatch,
   deleteDoc,
 } from "firebase/firestore";
-import subjectsData from "@/data/subjects.json";
-
-export const getAllSubjects = (): Subject[] => {
-  return subjectsData.filter((subject) => subject.active);
-};
-
-export const getSubjectById = (id: number): Subject | undefined => {
-  return subjectsData.find((subject) => subject.id === id);
-};
-
-export const searchSubjects = (query: string): Subject[] => {
-  const lowercaseQuery = query.toLowerCase();
-  return getAllSubjects().filter(
-    (subject) =>
-      subject.name.toLowerCase().includes(lowercaseQuery) ||
-      subject.longName.toLowerCase().includes(lowercaseQuery) ||
-      subject.alternateName.toLowerCase().includes(lowercaseQuery)
-  );
-};
 
 export const getUserCourseOfStudy = async (
-  userId: string
+  userId: string,
 ): Promise<string | null> => {
-  // Mock function for Firebase integration (to be replaced with actual Firebase calls)
   const userRef = doc(db, "users", userId);
   const userSnap = await getDoc(userRef);
 
@@ -44,11 +23,22 @@ export const getUserCourseOfStudy = async (
   return null;
 };
 
-// Mock functions for Firebase integration (to be replaced with actual Firebase calls)
+export const getUserEnrolledClasses = async (
+  userId: string,
+): Promise<string[] | null> => {
+  const userRef = doc(db, "users", userId);
+  const userSnap = await getDoc(userRef);
+
+  if (userSnap.exists()) {
+    const userData = userSnap.data();
+    return userData.enrolledClasses || null;
+  }
+  return null;
+};
+
 export const getUserSubjects = async (
-  userId: string
+  userId: string,
 ): Promise<UserSubject[]> => {
-  // This would normally fetch from Firestore
   const userSubjectRef = collection(db, "users", userId, "subjects");
   const snapshot = await getDocs(userSubjectRef);
   return snapshot.docs.map((doc) => {
@@ -62,14 +52,20 @@ export const getUserSubjects = async (
   });
 };
 
+export const getEnrolledAndUncompletedSubjects = async (
+  userId: string,
+): Promise<UserSubject[]> => {
+  const subjects = await getUserSubjects(userId);
+  return subjects.filter((subject) => !subject.completed);
+};
+
 export const addUserSubject = async (
-  subject: Subject,
-  userId: string
+  subject: any,
+  userId: string,
 ): Promise<void> => {
-  // This would normally save to Firestore
   const userSubjectRef = doc(
     collection(db, "users", userId, "subjects"),
-    subject.id.toString()
+    subject.id.toString(),
   );
   const newUserSubject: UserSubject = {
     ...subject,
@@ -78,18 +74,17 @@ export const addUserSubject = async (
   };
   await setDoc(userSubjectRef, {
     ...newUserSubject,
-    enrolledAt: newUserSubject.enrolledAt, // Firestore will store as Timestamp
+    enrolledAt: newUserSubject.enrolledAt,
   });
 };
 
 export const removeUserSubject = async (
   subjectId: number,
-  userId: string
+  userId: string,
 ): Promise<void> => {
-  // This would normally remove from Firestore
   const userSubjectRef = doc(
     collection(db, "users", userId, "subjects"),
-    subjectId.toString()
+    subjectId.toString(),
   );
   await deleteDoc(userSubjectRef);
 };
@@ -97,12 +92,11 @@ export const removeUserSubject = async (
 export const updateSubjectGrade = async (
   subjectId: number,
   userId: string,
-  grade: number
+  grade: number,
 ): Promise<void> => {
-  // This would normally update in Firestore
   const userSubjectRef = doc(
     collection(db, "users", userId, "subjects"),
-    subjectId.toString()
+    subjectId.toString(),
   );
   await updateDoc(userSubjectRef, {
     grade,

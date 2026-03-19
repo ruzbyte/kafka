@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { Subject } from "@/types/subjects";
-import { getAllSubjects, searchSubjects, addUserSubject } from "@/lib/subjects";
+import { addUserSubject } from "@/lib/subjects";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -36,17 +36,39 @@ export function SubjectSelector({
   const { user } = useAuthStore();
 
   useEffect(() => {
-    const allSubjects = getAllSubjects();
-    setSubjects(allSubjects);
-    setFilteredSubjects(allSubjects.slice(0, 50)); // Show first 50 initially
-  }, []);
+    if (isOpen && user?.uid) {
+      setIsLoading(true);
+      const params = new URLSearchParams();
+      if (user.studyField) params.append("studyField", user.studyField);
+      if (user.enrolledClasses && user.enrolledClasses.length > 0) {
+        params.append("enrolledClasses", user.enrolledClasses.join(","));
+      }
+
+      fetch(`/api/webuntis/subjects?${params.toString()}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setSubjects(data);
+            setFilteredSubjects(data);
+          }
+        })
+        .catch((err) => console.error("Error fetching subjects:", err))
+        .finally(() => setIsLoading(false));
+    }
+  }, [isOpen, user?.uid, user?.studyField, user?.enrolledClasses]);
 
   useEffect(() => {
     if (searchQuery.trim()) {
-      const results = searchSubjects(searchQuery);
-      setFilteredSubjects(results.slice(0, 100)); // Limit results
+      const query = searchQuery.toLowerCase();
+      const results = subjects.filter(
+        (s) =>
+          (s.name && s.name.toLowerCase().includes(query)) ||
+          (s.longName && s.longName.toLowerCase().includes(query)) ||
+          (s.alternateName && s.alternateName.toLowerCase().includes(query))
+      );
+      setFilteredSubjects(results);
     } else {
-      setFilteredSubjects(subjects.slice(0, 50));
+      setFilteredSubjects(subjects);
     }
   }, [searchQuery, subjects]);
 
@@ -96,7 +118,11 @@ export function SubjectSelector({
           </div>
 
           <div className="overflow-y-auto max-h-[50vh] space-y-2">
-            {availableSubjects.length === 0 ? (
+            {isLoading && subjects.length === 0 ? (
+              <div className="flex justify-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+              </div>
+            ) : availableSubjects.length === 0 ? (
               <div className="text-center py-8 text-muted-foreground">
                 {searchQuery
                   ? "No subjects found matching your search."

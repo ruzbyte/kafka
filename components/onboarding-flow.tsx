@@ -22,8 +22,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { BookOpen, GraduationCap, School } from "lucide-react";
+import { BookOpen, GraduationCap, School, Check } from "lucide-react";
 import { useAuthStore } from "@/hooks/auth_hook";
+import { useEffect } from "react";
+import { Badge } from "@/components/ui/badge";
 
 export type schoolType = "Hochschule Albstadt-Sigmaringen";
 
@@ -34,11 +36,27 @@ export function OnboardingFlow({ user }: OnboardingFlowProps) {
   const [schoolName, setSchoolName] = useState("");
   const [studyField, setStudyField] = useState("");
   const [customField, setCustomField] = useState("");
+  const [enrolledClasses, setEnrolledClasses] = useState<string[]>([]);
+  const [availableClasses, setAvailableClasses] = useState<any[]>([]);
   const [displayName, setDisplayName] = useState(user.displayName || "");
   const [isLoading, setIsLoading] = useState(false);
+  const [classesLoading, setClassesLoading] = useState(false);
   const { setUser } = useAuthStore();
-  const totalSteps = 3;
+  const totalSteps = 4;
   const progress = (step / totalSteps) * 100;
+
+  useEffect(() => {
+    if (step === 3 && studyField) {
+      setClassesLoading(true);
+      fetch(`/api/webuntis/classes?studyField=${encodeURIComponent(studyField)}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setAvailableClasses(data);
+        })
+        .catch((err) => console.error("Error fetching classes:", err))
+        .finally(() => setClassesLoading(false));
+    }
+  }, [step, studyField]);
 
   const handleNext = () => {
     if (step < totalSteps) {
@@ -52,17 +70,27 @@ export function OnboardingFlow({ user }: OnboardingFlowProps) {
     }
   };
 
+  const handleToggleClass = (className: string) => {
+    setEnrolledClasses((prev) =>
+      prev.includes(className)
+        ? prev.filter((c) => c !== className)
+        : [...prev, className],
+    );
+  };
+
   const handleComplete = async () => {
     setIsLoading(true);
     try {
       await updateDoc(doc(db, "users", user.uid), {
         schoolName,
         studyField: studyField === "Other" ? customField : studyField,
+        enrolledClasses,
         onboardingCompleted: true,
         updatedAt: new Date().toISOString(),
       });
       setUser({
-        ...(user as User),
+        ...(user as any),
+        enrolledClasses,
       });
       // Redirect to dashboard or show success
       window.location.href = "/dashboard";
@@ -79,7 +107,8 @@ export function OnboardingFlow({ user }: OnboardingFlowProps) {
       return (
         studyField && (studyField !== "Other" || customField.trim().length > 0)
       );
-    if (step === 3) return displayName.trim().length > 0;
+    if (step === 3) return enrolledClasses.length > 0;
+    if (step === 4) return displayName.trim().length > 0;
     return false;
   };
 
@@ -203,7 +232,59 @@ export function OnboardingFlow({ user }: OnboardingFlowProps) {
             </div>
           )}
 
-          {step == 3 && (
+          {step === 3 && (
+            <div className="space-y-6">
+              <div className="text-center">
+                <BookOpen className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">
+                  Which classes are you in?
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Select all classes (semesters) you are currently attending.
+                  This helps us optimize your calendar.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {classesLoading ? (
+                  <div className="flex justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-2 max-h-[300px] overflow-y-auto p-1">
+                    {availableClasses.map((c) => (
+                      <button
+                        key={c.id}
+                        onClick={() => handleToggleClass(c.name)}
+                        className={`flex items-center justify-between p-3 rounded-lg border text-sm transition-all ${
+                          enrolledClasses.includes(c.name)
+                            ? "border-blue-600 bg-blue-50 text-blue-700"
+                            : "border-gray-200 hover:border-blue-300"
+                        }`}
+                      >
+                        <span className="truncate">{c.name}</span>
+                        {enrolledClasses.includes(c.name) && (
+                          <Check className="h-4 w-4" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {enrolledClasses.length > 0 && (
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {enrolledClasses.map((c) => (
+                      <Badge key={c} variant="secondary" className="px-2 py-1">
+                        {c}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {step == 4 && (
             <div className="text-center space-y-4">
               <BookOpen className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">Set your username</h3>
