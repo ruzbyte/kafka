@@ -319,7 +319,7 @@ export class WebUntisAPI {
     year: SchoolYear = this.currentSchoolyear!,
     studyField?: studyFieldType,
     enrolledClasses?: string[],
-  ) {
+  ): Promise<Lesson[]> {
     if (!year) {
       year = await this.getCurrentSchoolYear();
     }

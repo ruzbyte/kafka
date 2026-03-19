@@ -32,9 +32,8 @@ export async function GET(
     const subjects = await getEnrolledAndUncompletedSubjects(userId);
     const studyField = (userSettings.studyField as studyFieldType) || "Other";
     const enrolledClasses = userSettings.enrolledClasses || [];
-    const schoolYearName = userSettings.defaultSchoolYear || "2025/2026";
 
-    const schoolYear = await webuntisApi.getSchoolYearByName(schoolYearName);
+    const schoolYear = await webuntisApi.getCurrentSchoolYear();
 
     const allLessons = await webuntisApi.getAllLessonsForSchoolYear(
       schoolYear,
