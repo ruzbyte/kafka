@@ -111,6 +111,10 @@ export class WebUntisAPI {
     return await this.webuntis.getTeachers(this.validateSession);
   }
 
+  async getSubjects() {
+    return await this.webuntis.getSubjects(this.validateSession);
+  }
+
   async getSubjectsFiltered(
     studyField?: studyFieldType,
     enrolledClasses?: string[],
