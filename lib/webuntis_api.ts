@@ -265,7 +265,7 @@ export class WebUntisAPI {
     );
   }
 
-  async getAllLessonsForSchoolYear(
+  async getTimeTableByClasses(
     enrolledSubjects: UserSubject[],
     studyField: studyFieldType,
     enrolledClasses?: string[],
