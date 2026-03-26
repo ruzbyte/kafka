@@ -39,7 +39,8 @@ export default function LandingPage() {
           width: "60vw",
           height: "60vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(148,25,118,0.12) 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle, rgba(148,25,118,0.12) 0%, transparent 60%)",
           filter: "blur(80px)",
           pointerEvents: "none",
           animation: "blobFloat 20s ease-in-out infinite",
@@ -53,7 +54,8 @@ export default function LandingPage() {
           width: "50vw",
           height: "50vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(234,71,193,0.08) 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle, rgba(234,71,193,0.08) 0%, transparent 60%)",
           filter: "blur(60px)",
           pointerEvents: "none",
           animation: "blobFloat 25s ease-in-out infinite reverse",
@@ -67,7 +69,8 @@ export default function LandingPage() {
           width: "30vw",
           height: "30vw",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(226,132,203,0.06) 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle, rgba(226,132,203,0.06) 0%, transparent 60%)",
           filter: "blur(60px)",
           pointerEvents: "none",
           animation: "blobFloat 30s ease-in-out infinite",
@@ -111,16 +114,17 @@ export default function LandingPage() {
                 {item}
               </a>
             ))}
-            <Link href="https://github.com/z4roc/yourical_enchanced" className="lp-nav-link">
+            <Link
+              href="https://github.com/z4roc/yourical_enchanced"
+              className="lp-nav-link"
+            >
               <Github size={15} /> GitHub
             </Link>
           </nav>
           <div style={{ display: "flex", gap: "10px" }}>
             {user ? (
               <Link href="/dashboard">
-                <Button className="lp-btn-header">
-                  Dashboard
-                </Button>
+                <Button className="lp-btn-header">Dashboard</Button>
               </Link>
             ) : (
               <>
@@ -130,9 +134,7 @@ export default function LandingPage() {
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button className="lp-btn-header">
-                    Starten
-                  </Button>
+                  <Button className="lp-btn-header">Starten</Button>
                 </Link>
               </>
             )}
@@ -141,7 +143,14 @@ export default function LandingPage() {
       </header>
 
       {/* === HERO — Centered with glass card === */}
-      <section style={{ position: "relative", zIndex: 1, padding: "120px 32px 80px", textAlign: "center" }}>
+      <section
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "120px 32px 80px",
+          textAlign: "center",
+        }}
+      >
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
           <div
             style={{
@@ -174,7 +183,8 @@ export default function LandingPage() {
             <br />
             <span
               style={{
-                background: "linear-gradient(135deg, #ea47c1, #e284cb, #941976)",
+                background:
+                  "linear-gradient(135deg, #ea47c1, #e284cb, #941976)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
@@ -183,12 +193,22 @@ export default function LandingPage() {
             </span>
           </h1>
 
-          <p style={{ fontSize: "17px", lineHeight: 1.8, color: "rgba(246,232,243,0.5)", maxWidth: "500px", margin: "0 auto 48px" }}>
-            Stundenplan, Notizen und Kursverwaltung — alles in einer wunderschönen Plattform.
-            Von Studis der HS Albstadt-Sigmaringen.
+          <p
+            style={{
+              fontSize: "17px",
+              lineHeight: 1.8,
+              color: "rgba(246,232,243,0.5)",
+              maxWidth: "500px",
+              margin: "0 auto 48px",
+            }}
+          >
+            Stundenplan, Notizen und Kursverwaltung — alles in einer
+            wunderschönen Plattform. Von Studis der HS Albstadt-Sigmaringen.
           </p>
 
-          <div style={{ display: "flex", gap: "14px", justifyContent: "center" }}>
+          <div
+            style={{ display: "flex", gap: "14px", justifyContent: "center" }}
+          >
             <Link href="/register">
               <Button
                 size="lg"
@@ -221,20 +241,49 @@ export default function LandingPage() {
             backdropFilter: "blur(24px)",
             border: "1px solid rgba(246,232,243,0.07)",
             overflow: "hidden",
-            boxShadow: "0 20px 80px rgba(0,0,0,0.3), inset 0 1px 0 rgba(246,232,243,0.05)",
+            boxShadow:
+              "0 20px 80px rgba(0,0,0,0.3), inset 0 1px 0 rgba(246,232,243,0.05)",
           }}
         >
-          <div style={{ padding: "18px 24px", borderBottom: "1px solid rgba(246,232,243,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div
+            style={{
+              padding: "18px 24px",
+              borderBottom: "1px solid rgba(246,232,243,0.05)",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#ea47c1", boxShadow: "0 0 8px #ea47c1" }} />
-              <span style={{ fontWeight: 700, fontSize: "14px" }}>Wintersemester 2025</span>
+              <div
+                style={{
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  background: "#ea47c1",
+                  boxShadow: "0 0 8px #ea47c1",
+                }}
+              />
+              <span style={{ fontWeight: 700, fontSize: "14px" }}>
+                Wintersemester 2025
+              </span>
             </div>
-            <span style={{ color: "rgba(246,232,243,0.35)", fontSize: "12px" }}>15 ECTS</span>
+            <span style={{ color: "rgba(246,232,243,0.35)", fontSize: "12px" }}>
+              15 ECTS
+            </span>
           </div>
           {[
             { name: "Mathematik 2", time: "Mo 8:00–9:30", color: "#ea47c1" },
-            { name: "Softwaretechnik", time: "Di 15:30–17:00", color: "#e284cb" },
-            { name: "Einführung Informatik", time: "Mi 14:00–15:30", color: "#941976" },
+            {
+              name: "Softwaretechnik",
+              time: "Di 15:30–17:00",
+              color: "#e284cb",
+            },
+            {
+              name: "Einführung Informatik",
+              time: "Mi 14:00–15:30",
+              color: "#941976",
+            },
           ].map((c, i) => (
             <div
               key={i}
@@ -243,16 +292,35 @@ export default function LandingPage() {
                 display: "flex",
                 alignItems: "center",
                 gap: "14px",
-                borderBottom: i < 2 ? "1px solid rgba(246,232,243,0.03)" : "none",
+                borderBottom:
+                  i < 2 ? "1px solid rgba(246,232,243,0.03)" : "none",
                 transition: "background 0.2s",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(246,232,243,0.02)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(246,232,243,0.02)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+              }}
             >
-              <div style={{ width: "4px", height: "32px", borderRadius: "2px", background: c.color, boxShadow: `0 0 12px ${c.color}40` }} />
+              <div
+                style={{
+                  width: "4px",
+                  height: "32px",
+                  borderRadius: "2px",
+                  background: c.color,
+                  boxShadow: `0 0 12px ${c.color}40`,
+                }}
+              />
               <div style={{ textAlign: "left" }}>
-                <div style={{ fontWeight: 700, fontSize: "14px" }}>{c.name}</div>
-                <div style={{ color: "rgba(246,232,243,0.35)", fontSize: "12px" }}>{c.time}</div>
+                <div style={{ fontWeight: 700, fontSize: "14px" }}>
+                  {c.name}
+                </div>
+                <div
+                  style={{ color: "rgba(246,232,243,0.35)", fontSize: "12px" }}
+                >
+                  {c.time}
+                </div>
               </div>
             </div>
           ))}
@@ -260,9 +328,18 @@ export default function LandingPage() {
       </section>
 
       {/* === FEATURES — Glass cards === */}
-      <section id="features" style={{ position: "relative", zIndex: 1, padding: "100px 32px" }}>
+      <section
+        id="features"
+        style={{ position: "relative", zIndex: 1, padding: "100px 32px" }}
+      >
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 700, margin: "0 0 12px" }}>
+          <h2
+            style={{
+              fontSize: "clamp(28px, 4vw, 44px)",
+              fontWeight: 700,
+              margin: "0 0 12px",
+            }}
+          >
             Alles integriert
           </h2>
           <p style={{ color: "rgba(246,232,243,0.45)", fontSize: "16px" }}>
@@ -280,12 +357,42 @@ export default function LandingPage() {
           }}
         >
           {[
-            { icon: <Calendar size={22} />, title: "Semesterplanung", desc: "WebUntis-Integration mit automatischer Synchronisation. Visuelle Kursauswahl und Konflikterkennung.", accent: "#ea47c1" },
-            { icon: <NotebookPen size={22} />, title: "Smarte Notizen", desc: "Fachspezifische Notizen mit Markdown. Durchsuchbar, exportierbar, immer dabei.", accent: "#e284cb" },
-            { icon: <BookOpen size={22} />, title: "ECTS Tracking", desc: "Kursverwaltung mit ECTS-Übersicht. Fortschritt tracken, Vorgaben einsehen.", accent: "#941976" },
-            { icon: <Download size={22} />, title: "Kalender-Sync", desc: "ICS-Export für Apple, Google und Outlook. Dein Semester überall.", accent: "#ea47c1" },
-            { icon: <Clock size={22} />, title: "Zeitmanagement", desc: "Deadlines, Prüfungen, Vorlesungen — nie wieder etwas verpassen.", accent: "#e284cb" },
-            { icon: <GraduationCap size={22} />, title: "By Students", desc: "Open Source, kostenlos, keine Werbung. Gebaut mit Verständnis.", accent: "#941976" },
+            {
+              icon: <Calendar size={22} />,
+              title: "Semesterplanung",
+              desc: "WebUntis-Integration mit automatischer Synchronisation. Visuelle Kursauswahl und Konflikterkennung.",
+              accent: "#ea47c1",
+            },
+            {
+              icon: <NotebookPen size={22} />,
+              title: "Smarte Notizen",
+              desc: "Fachspezifische Notizen mit Markdown. Durchsuchbar, exportierbar, immer dabei.",
+              accent: "#e284cb",
+            },
+            {
+              icon: <BookOpen size={22} />,
+              title: "ECTS Tracking",
+              desc: "Kursverwaltung mit ECTS-Übersicht. Fortschritt tracken, Vorgaben einsehen.",
+              accent: "#941976",
+            },
+            {
+              icon: <Download size={22} />,
+              title: "Kalender-Sync",
+              desc: "ICS-Export für Apple, Google und Outlook. Dein Semester überall.",
+              accent: "#ea47c1",
+            },
+            {
+              icon: <Clock size={22} />,
+              title: "Zeitmanagement",
+              desc: "Deadlines, Prüfungen, Vorlesungen — nie wieder etwas verpassen.",
+              accent: "#e284cb",
+            },
+            {
+              icon: <GraduationCap size={22} />,
+              title: "By Students",
+              desc: "Open Source, kostenlos, keine Werbung. Gebaut mit Verständnis.",
+              accent: "#941976",
+            },
           ].map((f, i) => (
             <div
               key={i}
@@ -325,10 +432,23 @@ export default function LandingPage() {
               >
                 {f.icon}
               </div>
-              <h3 style={{ fontSize: "17px", fontWeight: 700, marginBottom: "8px" }}>
+              <h3
+                style={{
+                  fontSize: "17px",
+                  fontWeight: 700,
+                  marginBottom: "8px",
+                }}
+              >
                 {f.title}
               </h3>
-              <p style={{ color: "rgba(246,232,243,0.45)", fontSize: "14px", lineHeight: 1.7, margin: 0 }}>
+              <p
+                style={{
+                  color: "rgba(246,232,243,0.45)",
+                  fontSize: "14px",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
                 {f.desc}
               </p>
             </div>
@@ -337,23 +457,43 @@ export default function LandingPage() {
       </section>
 
       {/* === CTA === */}
-      <section style={{ position: "relative", zIndex: 1, padding: "80px 32px", textAlign: "center" }}>
+      <section
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "80px 32px",
+          textAlign: "center",
+        }}
+      >
         <div
           style={{
             maxWidth: "600px",
             margin: "0 auto",
             padding: "64px 48px",
             borderRadius: "24px",
-            background: "linear-gradient(135deg, rgba(148,25,118,0.12), rgba(234,71,193,0.06))",
+            background:
+              "linear-gradient(135deg, rgba(148,25,118,0.12), rgba(234,71,193,0.06))",
             backdropFilter: "blur(20px)",
             border: "1px solid rgba(234,71,193,0.12)",
             boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
           }}
         >
-          <h2 style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 700, margin: "0 0 12px" }}>
+          <h2
+            style={{
+              fontSize: "clamp(24px, 3vw, 36px)",
+              fontWeight: 700,
+              margin: "0 0 12px",
+            }}
+          >
             Starte dein bestes Semester
           </h2>
-          <p style={{ color: "rgba(246,232,243,0.45)", fontSize: "15px", marginBottom: "32px" }}>
+          <p
+            style={{
+              color: "rgba(246,232,243,0.45)",
+              fontSize: "15px",
+              marginBottom: "32px",
+            }}
+          >
             Kostenlos. Open Source. Gebaut mit Liebe.
           </p>
           <Link href="/register">
@@ -369,31 +509,82 @@ export default function LandingPage() {
       </section>
 
       {/* === FOOTER === */}
-      <footer style={{ position: "relative", zIndex: 1, padding: "60px 32px 28px", borderTop: "1px solid rgba(246,232,243,0.04)" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: "32px" }}>
+      <footer
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "60px 32px 28px",
+          borderTop: "1px solid rgba(246,232,243,0.04)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1000px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "2fr 1fr 1fr 1fr",
+            gap: "32px",
+          }}
+        >
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                marginBottom: "12px",
+              }}
+            >
               <Image src="/logo.png" alt="Kafka" width={26} height={26} />
               <span style={{ fontWeight: 700, fontSize: "16px" }}>Kafka</span>
             </div>
-            <p style={{ color: "rgba(246,232,243,0.3)", fontSize: "13px", lineHeight: 1.7, maxWidth: "260px" }}>
+            <p
+              style={{
+                color: "rgba(246,232,243,0.3)",
+                fontSize: "13px",
+                lineHeight: 1.7,
+                maxWidth: "260px",
+              }}
+            >
               Von Studenten für Studenten. Open Source und mit Liebe gebaut.
             </p>
           </div>
           {[
             { title: "Product", links: ["Features", "Roadmap", "Updates"] },
-            { title: "Support", links: ["Help Center", "Contact", "Community"] },
-            { title: "Team", links: [
-              { label: "ZAROC", href: "https://github.com/z4roc" },
-              { label: "Tfinn", href: "https://github.com/piesalad" },
-              { label: "Tyrenjo", href: "https://github.com/Tyrenjo" },
-            ]},
+            {
+              title: "Support",
+              links: ["Help Center", "Contact", "Community"],
+            },
+            {
+              title: "Team",
+              links: [
+                { label: "ZAROC", href: "https://github.com/z4roc" },
+                { label: "Tfinn", href: "https://github.com/piesalad" },
+                { label: "Tyrenjo", href: "https://github.com/Tyrenjo" },
+              ],
+            },
           ].map((col, i) => (
             <div key={i}>
-              <h4 style={{ fontWeight: 700, fontSize: "12px", marginBottom: "14px", color: "#e284cb" }}>
+              <h4
+                style={{
+                  fontWeight: 700,
+                  fontSize: "12px",
+                  marginBottom: "14px",
+                  color: "#e284cb",
+                }}
+              >
                 {col.title}
               </h4>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                }}
+              >
                 {col.links.map((link, j) => {
                   const label = typeof link === "string" ? link : link.label;
                   const href = typeof link === "string" ? "#" : link.href;
@@ -409,11 +600,19 @@ export default function LandingPage() {
             </div>
           ))}
         </div>
-        <div style={{ textAlign: "center", marginTop: "48px", paddingTop: "20px", borderTop: "1px solid rgba(246,232,243,0.04)", color: "rgba(246,232,243,0.2)", fontSize: "12px" }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "48px",
+            paddingTop: "20px",
+            borderTop: "1px solid rgba(246,232,243,0.04)",
+            color: "rgba(246,232,243,0.2)",
+            fontSize: "12px",
+          }}
+        >
           &copy; 2025 ZAROC. All rights reserved.
         </div>
       </footer>
-
     </div>
   );
 }
