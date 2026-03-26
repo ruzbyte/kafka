@@ -1,391 +1,616 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   Calendar,
   NotebookPen,
-  Users,
   Clock,
   BookOpen,
   Github,
-  Star,
-  Heart,
+  ArrowRight,
+  Download,
+  Sparkles,
+  GraduationCap,
 } from "lucide-react";
 import Link from "next/link";
-import { useAuthStore } from "@/hooks/auth_hook";
 import Image from "next/image";
+import { useAuthStore } from "@/hooks/auth_hook";
 
 export default function LandingPage() {
   const { user } = useAuthStore();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50 dark:bg-gray-900/80 dark:border-gray-800">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Image src="/logo.png" alt="Logo" width={40} height={40} />
-            <span className="text-4xl font-bold pl-4 text-gray-900 dark:text-white">
-              Kafka
-            </span>
-          </div>
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="https://github.com/z4roc/yourical_enchanced">
-              <Button variant={"ghost"}>
-                <Github className="h-5 w-5" />
-                Source
-              </Button>
-            </Link>
-            <Link
-              href="#about"
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors"
-            >
-              Über uns
-            </Link>
+    <div
+      style={{
+        fontFamily: "'Noto Sans Marchen', sans-serif",
+        color: "#f6e8f3",
+        background: "#0b0309",
+        minHeight: "100vh",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Ambient gradient blobs */}
+      <div
+        style={{
+          position: "fixed",
+          top: "-20%",
+          right: "-10%",
+          width: "60vw",
+          height: "60vw",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(148,25,118,0.12) 0%, transparent 60%)",
+          filter: "blur(80px)",
+          pointerEvents: "none",
+          animation: "blobFloat 20s ease-in-out infinite",
+        }}
+      />
+      <div
+        style={{
+          position: "fixed",
+          bottom: "-15%",
+          left: "-10%",
+          width: "50vw",
+          height: "50vw",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(234,71,193,0.08) 0%, transparent 60%)",
+          filter: "blur(60px)",
+          pointerEvents: "none",
+          animation: "blobFloat 25s ease-in-out infinite reverse",
+        }}
+      />
+      <div
+        style={{
+          position: "fixed",
+          top: "40%",
+          left: "30%",
+          width: "30vw",
+          height: "30vw",
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(226,132,203,0.06) 0%, transparent 60%)",
+          filter: "blur(60px)",
+          pointerEvents: "none",
+          animation: "blobFloat 30s ease-in-out infinite",
+        }}
+      />
 
+      {/* === HEADER — Glass bar === */}
+      <header
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+          padding: "12px 32px",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "12px 24px",
+            borderRadius: "16px",
+            background: "rgba(246,232,243,0.04)",
+            backdropFilter: "blur(24px)",
+            border: "1px solid rgba(246,232,243,0.06)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <Image src="/logo.png" alt="Kafka" width={30} height={30} />
+            <span style={{ fontSize: "20px", fontWeight: 700 }}>Kafka</span>
+          </div>
+          <nav style={{ display: "flex", alignItems: "center", gap: "28px" }}>
+            {["Features", "Über uns"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase().replace(" ", "")}`}
+                className="lp-nav-link"
+              >
+                {item}
+              </a>
+            ))}
             <Link
-              href="#"
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors"
+              href="https://github.com/z4roc/yourical_enchanced"
+              className="lp-nav-link"
             >
-              <Button variant={"ghost"}>
-                <Heart className="h-5 w-5" />
-                Supporte uns!
-              </Button>
+              <Github size={15} /> GitHub
             </Link>
           </nav>
-          <div className="flex items-center space-x-4">
+          <div style={{ display: "flex", gap: "10px" }}>
             {user ? (
-              <Button>
-                <Link href="/dashboard">Mein Dashboard</Link>
-              </Button>
+              <Link href="/dashboard">
+                <Button className="lp-btn-header">Dashboard</Button>
+              </Link>
             ) : (
-              <div className="flex items-center space-x-2">
-                <Button
-                  variant="ghost"
-                  className="hidden sm:inline-flex"
-                  asChild
-                >
-                  <Link href="/login">Login</Link>
-                </Button>
-                <Button className="bg-blue-600 hover:bg-blue-700" asChild>
-                  <Link href="/register" className="dark:text-white">
-                    Jetzt Loslegen
-                  </Link>
-                </Button>
-              </div>
+              <>
+                <Link href="/login">
+                  <Button variant="ghost" className="lp-btn-ghost">
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button className="lp-btn-header">Starten</Button>
+                </Link>
+              </>
             )}
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="py-20 lg:py-32">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <div className="inline-block rounded-full bg-blue-100 dark:bg-blue-900/50 px-4 py-2 text-sm font-medium text-blue-800 dark:text-blue-200">
-                  🎓 For Students, By Students
-                </div>
-                <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                  Plane dein <em>perfektes</em>{" "}
-                  <span className="text-blue-600">Semester</span>
-                </h1>
-                <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Wähle deine Kurse, plane dein Semester und organisiere deine
-                  Notizen und synchronisiere deinen Kalender – alles an einem
-                  Ort.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3"
-                >
-                  Jetzt starten
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg px-8 py-3 bg-transparent"
-                >
-                  <Github className="h-5 w-5 mr-2" />
-                  <Link href="https://github.com/z4roc/yourical_enchanced">
-                    Zum Projekt
-                  </Link>
-                </Button>
-              </div>
-              <div className="flex items-center space-x-8 text-sm text-gray-500 dark:text-gray-400">
-                <div className="flex items-center space-x-2">
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span>4.9/5 rating</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Users className="h-4 w-4" />
-                  <span>Quelle Bruder vertrau mir</span>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="relative z-10 bg-white rounded-2xl shadow-2xl p-8 border dark:bg-gray-800 dark:border-gray-700">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold dark:text-white">
-                    Winter 2025
-                  </h3>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
-                    15 ETCS
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-                    <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <div className="flex-1">
-                      <div className="font-medium dark:text-white">
-                        Mathematik 2
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        HowW 8:00-9:30
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-green-50 dark:bg-green-900/30 rounded-lg">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <div className="flex-1">
-                      <div className="font-medium dark:text-white">
-                        Softwaretechnik
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        MatU 15:30-17:00
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg">
-                    <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                    <div className="flex-1">
-                      <div className="font-medium dark:text-white">
-                        Einführung Informatik
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        JunB 14:00-15:30
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 blur-3xl"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
-              Alles was du für dein Studium brauchst
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Von der Kursplanung bis zur Notizverwaltung – wir haben alles
-              integriert, um dir das Leben zu erleichtern.
-            </p>
+      {/* === HERO — Centered with glass card === */}
+      <section
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "120px 32px 80px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              padding: "8px 20px",
+              borderRadius: "100px",
+              background: "rgba(234,71,193,0.08)",
+              border: "1px solid rgba(234,71,193,0.15)",
+              backdropFilter: "blur(12px)",
+              fontSize: "13px",
+              color: "#e284cb",
+              marginBottom: "40px",
+            }}
+          >
+            <Sparkles size={14} />
+            Dein Studium, vereinfacht
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Calendar className="h-6 w-6 text-blue-600" />
-                </div>
-                <CardTitle>Schlaue Semesterplanung</CardTitle>
-                <CardDescription>
-                  Plane deine Kurse und Aktivitäten mit unserem intelligenten
-                  Semesterplaner.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                  <li>• Visuelle Fachauswahl</li>
-                  <li>• Konflikte auflösen</li>
-                  <li>• ETCS tracken</li>
-                  <li>• Vorgaben einsehen</li>
-                </ul>
-              </CardContent>
-            </Card>
+          <h1
+            style={{
+              fontSize: "clamp(40px, 6vw, 68px)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              margin: "0 0 24px",
+            }}
+          >
+            Plane dein Semester
+            <br />
+            <span
+              style={{
+                background:
+                  "linear-gradient(135deg, #ea47c1, #e284cb, #941976)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              ohne Chaos
+            </span>
+          </h1>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <NotebookPen className="h-6 w-6 text-green-600" />
-                </div>
-                <CardTitle>Integrierte Notizen</CardTitle>
-                <CardDescription>
-                  Halte deine Gedanken und Ideen direkt in deinem Kalender fest.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                  <li>• Direkt per Texteditor eintragen</li>
-                  <li>• Fachspezifische Notizen</li>
-                  <li>• Einfach durchsuchen</li>
-                  <li>• Als PDF exportieren</li>
-                </ul>
-              </CardContent>
-            </Card>
+          <p
+            style={{
+              fontSize: "17px",
+              lineHeight: 1.8,
+              color: "rgba(246,232,243,0.5)",
+              maxWidth: "500px",
+              margin: "0 auto 48px",
+            }}
+          >
+            Stundenplan, Notizen und Kursverwaltung — alles in einer
+            wunderschönen Plattform. Von Studis der HS Albstadt-Sigmaringen.
+          </p>
 
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <Clock className="h-6 w-6 text-purple-600" />
-                </div>
-                <CardTitle>Time Management</CardTitle>
-                <CardDescription>
-                  Immer auf dem neuesten Stand mit deinen Aufgaben und Terminen.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                  <li>• Abgaben reminder</li>
-                  <li>• Prüfungsplanung</li>
-                  <li>• Vorlesungstermine einhalten</li>
-                  <li>• Fortschritt tracken</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white">
-              Starte jetzt mit der besten Studienplanung
-            </h2>
-            <p className="text-xl text-blue-100">
-              Egal ob du gerade erst anfängst oder schon mitten im Studium
-              steckst – wir haben die Tools, die du brauchst, um erfolgreich zu
-              sein.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div
+            style={{ display: "flex", gap: "14px", justifyContent: "center" }}
+          >
+            <Link href="/register">
               <Button
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-3"
+                className="lp-btn-primary"
+                style={{ fontSize: "16px", padding: "14px 36px" }}
               >
-                <Link href="/register">Jetzt registrieren</Link>
+                Kostenlos starten <ArrowRight size={18} />
               </Button>
+            </Link>
+            <Link href="https://github.com/z4roc/yourical_enchanced">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-3 bg-transparent"
+                className="lp-btn-outline"
+                style={{ fontSize: "16px", padding: "14px 36px" }}
               >
-                <Github className="h-5 w-5 mr-2" />
-                <Link href="https://github.com/z4roc/yourical_enchanced">
-                  Zum Projekt
-                </Link>
+                <Github size={18} /> Source
               </Button>
-            </div>
-            <p className="text-sm text-blue-200">
-              Kostet nichts, einfach ausprobieren!
-            </p>
+            </Link>
           </div>
+        </div>
+
+        {/* Glass schedule preview */}
+        <div
+          style={{
+            maxWidth: "600px",
+            margin: "80px auto 0",
+            borderRadius: "20px",
+            background: "rgba(246,232,243,0.03)",
+            backdropFilter: "blur(24px)",
+            border: "1px solid rgba(246,232,243,0.07)",
+            overflow: "hidden",
+            boxShadow:
+              "0 20px 80px rgba(0,0,0,0.3), inset 0 1px 0 rgba(246,232,243,0.05)",
+          }}
+        >
+          <div
+            style={{
+              padding: "18px 24px",
+              borderBottom: "1px solid rgba(246,232,243,0.05)",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div
+                style={{
+                  width: "8px",
+                  height: "8px",
+                  borderRadius: "50%",
+                  background: "#ea47c1",
+                  boxShadow: "0 0 8px #ea47c1",
+                }}
+              />
+              <span style={{ fontWeight: 700, fontSize: "14px" }}>
+                Wintersemester 2025
+              </span>
+            </div>
+            <span style={{ color: "rgba(246,232,243,0.35)", fontSize: "12px" }}>
+              15 ECTS
+            </span>
+          </div>
+          {[
+            { name: "Mathematik 2", time: "Mo 8:00–9:30", color: "#ea47c1" },
+            {
+              name: "Softwaretechnik",
+              time: "Di 15:30–17:00",
+              color: "#e284cb",
+            },
+            {
+              name: "Einführung Informatik",
+              time: "Mi 14:00–15:30",
+              color: "#941976",
+            },
+          ].map((c, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "14px 24px",
+                display: "flex",
+                alignItems: "center",
+                gap: "14px",
+                borderBottom:
+                  i < 2 ? "1px solid rgba(246,232,243,0.03)" : "none",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(246,232,243,0.02)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+              }}
+            >
+              <div
+                style={{
+                  width: "4px",
+                  height: "32px",
+                  borderRadius: "2px",
+                  background: c.color,
+                  boxShadow: `0 0 12px ${c.color}40`,
+                }}
+              />
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontWeight: 700, fontSize: "14px" }}>
+                  {c.name}
+                </div>
+                <div
+                  style={{ color: "rgba(246,232,243,0.35)", fontSize: "12px" }}
+                >
+                  {c.time}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 dark:bg-black">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Image src="/logo.png" alt="Logo" width={40} height={40} />
-                <span className="text-xl font-bold">Kafka</span>
+      {/* === FEATURES — Glass cards === */}
+      <section
+        id="features"
+        style={{ position: "relative", zIndex: 1, padding: "100px 32px" }}
+      >
+        <div style={{ textAlign: "center", marginBottom: "64px" }}>
+          <h2
+            style={{
+              fontSize: "clamp(28px, 4vw, 44px)",
+              fontWeight: 700,
+              margin: "0 0 12px",
+            }}
+          >
+            Alles integriert
+          </h2>
+          <p style={{ color: "rgba(246,232,243,0.45)", fontSize: "16px" }}>
+            Die Tools die du wirklich brauchst, an einem Ort.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "20px",
+            maxWidth: "1000px",
+            margin: "0 auto",
+          }}
+        >
+          {[
+            {
+              icon: <Calendar size={22} />,
+              title: "Semesterplanung",
+              desc: "WebUntis-Integration mit automatischer Synchronisation. Visuelle Kursauswahl und Konflikterkennung.",
+              accent: "#ea47c1",
+            },
+            {
+              icon: <NotebookPen size={22} />,
+              title: "Smarte Notizen",
+              desc: "Fachspezifische Notizen mit Markdown. Durchsuchbar, exportierbar, immer dabei.",
+              accent: "#e284cb",
+            },
+            {
+              icon: <BookOpen size={22} />,
+              title: "ECTS Tracking",
+              desc: "Kursverwaltung mit ECTS-Übersicht. Fortschritt tracken, Vorgaben einsehen.",
+              accent: "#941976",
+            },
+            {
+              icon: <Download size={22} />,
+              title: "Kalender-Sync",
+              desc: "ICS-Export für Apple, Google und Outlook. Dein Semester überall.",
+              accent: "#ea47c1",
+            },
+            {
+              icon: <Clock size={22} />,
+              title: "Zeitmanagement",
+              desc: "Deadlines, Prüfungen, Vorlesungen — nie wieder etwas verpassen.",
+              accent: "#e284cb",
+            },
+            {
+              icon: <GraduationCap size={22} />,
+              title: "By Students",
+              desc: "Open Source, kostenlos, keine Werbung. Gebaut mit Verständnis.",
+              accent: "#941976",
+            },
+          ].map((f, i) => (
+            <div
+              key={i}
+              style={{
+                padding: "32px",
+                borderRadius: "18px",
+                background: "rgba(246,232,243,0.025)",
+                backdropFilter: "blur(16px)",
+                border: "1px solid rgba(246,232,243,0.06)",
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.1)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = `${f.accent}30`;
+                e.currentTarget.style.boxShadow = `0 8px 40px ${f.accent}10`;
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(246,232,243,0.06)";
+                e.currentTarget.style.boxShadow = "0 4px 24px rgba(0,0,0,0.1)";
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+              <div
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "12px",
+                  background: `${f.accent}12`,
+                  border: `1px solid ${f.accent}20`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: f.accent,
+                  marginBottom: "20px",
+                }}
+              >
+                {f.icon}
               </div>
-              <p className="text-gray-400">
-                Studenten die ihr leben einfacher machen wollten, und das
-                Ergebnis mit dir teilen.
+              <h3
+                style={{
+                  fontSize: "17px",
+                  fontWeight: 700,
+                  marginBottom: "8px",
+                }}
+              >
+                {f.title}
+              </h3>
+              <p
+                style={{
+                  color: "rgba(246,232,243,0.45)",
+                  fontSize: "14px",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
+                {f.desc}
               </p>
             </div>
-            <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Roadmap
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Updates
-                  </Link>
-                </li>
-              </ul>
+          ))}
+        </div>
+      </section>
+
+      {/* === CTA === */}
+      <section
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "80px 32px",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "600px",
+            margin: "0 auto",
+            padding: "64px 48px",
+            borderRadius: "24px",
+            background:
+              "linear-gradient(135deg, rgba(148,25,118,0.12), rgba(234,71,193,0.06))",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(234,71,193,0.12)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "clamp(24px, 3vw, 36px)",
+              fontWeight: 700,
+              margin: "0 0 12px",
+            }}
+          >
+            Starte dein bestes Semester
+          </h2>
+          <p
+            style={{
+              color: "rgba(246,232,243,0.45)",
+              fontSize: "15px",
+              marginBottom: "32px",
+            }}
+          >
+            Kostenlos. Open Source. Gebaut mit Liebe.
+          </p>
+          <Link href="/register">
+            <Button
+              size="lg"
+              className="lp-btn-primary"
+              style={{ fontSize: "16px", padding: "14px 40px" }}
+            >
+              Jetzt registrieren <ArrowRight size={18} />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* === FOOTER === */}
+      <footer
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "60px 32px 28px",
+          borderTop: "1px solid rgba(246,232,243,0.04)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1000px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "2fr 1fr 1fr 1fr",
+            gap: "32px",
+          }}
+        >
+          <div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                marginBottom: "12px",
+              }}
+            >
+              <Image src="/logo.png" alt="Kafka" width={26} height={26} />
+              <span style={{ fontWeight: 700, fontSize: "16px" }}>Kafka</span>
             </div>
-            <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Help Center
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Community
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <Link
-                    href="https://github.com/z4roc"
-                    className="hover:text-white transition-colors"
-                  >
-                    ZAROC
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://github.com/piesalad"
-                    className="hover:text-white transition-colors"
-                  >
-                    Tfinn
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://github.com/Tyrenjo"
-                    className="hover:text-white transition-colors"
-                  >
-                    Tyrenjo
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            <p
+              style={{
+                color: "rgba(246,232,243,0.3)",
+                fontSize: "13px",
+                lineHeight: 1.7,
+                maxWidth: "260px",
+              }}
+            >
+              Von Studenten für Studenten. Open Source und mit Liebe gebaut.
+            </p>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 ZAROC. All rights reserved.</p>
-          </div>
+          {[
+            { title: "Product", links: ["Features", "Roadmap", "Updates"] },
+            {
+              title: "Support",
+              links: ["Help Center", "Contact", "Community"],
+            },
+            {
+              title: "Team",
+              links: [
+                { label: "ZAROC", href: "https://github.com/z4roc" },
+                { label: "Tfinn", href: "https://github.com/piesalad" },
+                { label: "Tyrenjo", href: "https://github.com/Tyrenjo" },
+              ],
+            },
+          ].map((col, i) => (
+            <div key={i}>
+              <h4
+                style={{
+                  fontWeight: 700,
+                  fontSize: "12px",
+                  marginBottom: "14px",
+                  color: "#e284cb",
+                }}
+              >
+                {col.title}
+              </h4>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  margin: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                }}
+              >
+                {col.links.map((link, j) => {
+                  const label = typeof link === "string" ? link : link.label;
+                  const href = typeof link === "string" ? "#" : link.href;
+                  return (
+                    <li key={j}>
+                      <Link href={href} className="lp-footer-link">
+                        {label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "48px",
+            paddingTop: "20px",
+            borderTop: "1px solid rgba(246,232,243,0.04)",
+            color: "rgba(246,232,243,0.2)",
+            fontSize: "12px",
+          }}
+        >
+          &copy; 2025 ZAROC. All rights reserved.
         </div>
       </footer>
     </div>
