@@ -16,7 +16,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuthStore } from "@/hooks/auth_hook";
 
-export default function LandingPage() {
+/*
+ * DRAFT 4 — "Glass Flow"
+ * Glassmorphic cards, flowing gradient blobs, layered depth,
+ * soft rounded shapes, dreamy atmosphere on dark canvas.
+ */
+
+export default function Draft4() {
   const { user } = useAuthStore();
 
   return (
@@ -78,7 +84,7 @@ export default function LandingPage() {
       <header
         style={{
           position: "sticky",
-          top: 0,
+          top: 52,
           zIndex: 100,
           padding: "12px 32px",
         }}
@@ -106,31 +112,36 @@ export default function LandingPage() {
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(" ", "")}`}
-                className="lp-nav-link"
+                style={{
+                  color: "rgba(246,232,243,0.55)",
+                  textDecoration: "none",
+                  fontSize: "14px",
+                  transition: "color 0.2s",
+                }}
               >
                 {item}
               </a>
             ))}
-            <Link href="https://github.com/z4roc/yourical_enchanced" className="lp-nav-link">
+            <Link href="https://github.com/z4roc/yourical_enchanced" style={{ color: "rgba(246,232,243,0.55)", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px", fontSize: "14px" }}>
               <Github size={15} /> GitHub
             </Link>
           </nav>
           <div style={{ display: "flex", gap: "10px" }}>
             {user ? (
               <Link href="/dashboard">
-                <Button className="lp-btn-header">
+                <Button style={{ background: "rgba(234,71,193,0.2)", color: "#ea47c1", border: "1px solid rgba(234,71,193,0.3)", fontFamily: "'Noto Sans Marchen', sans-serif", borderRadius: "10px", backdropFilter: "blur(12px)" }}>
                   Dashboard
                 </Button>
               </Link>
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="ghost" className="lp-btn-ghost">
+                  <Button variant="ghost" style={{ color: "rgba(246,232,243,0.6)", fontFamily: "'Noto Sans Marchen', sans-serif", borderRadius: "10px" }}>
                     Login
                   </Button>
                 </Link>
                 <Link href="/register">
-                  <Button className="lp-btn-header">
+                  <Button style={{ background: "rgba(234,71,193,0.2)", color: "#ea47c1", border: "1px solid rgba(234,71,193,0.3)", fontFamily: "'Noto Sans Marchen', sans-serif", fontWeight: 700, borderRadius: "10px", backdropFilter: "blur(12px)" }}>
                     Starten
                   </Button>
                 </Link>
@@ -192,8 +203,18 @@ export default function LandingPage() {
             <Link href="/register">
               <Button
                 size="lg"
-                className="lp-btn-primary"
-                style={{ fontSize: "16px", padding: "14px 36px" }}
+                style={{
+                  background: "linear-gradient(135deg, rgba(234,71,193,0.3), rgba(148,25,118,0.4))",
+                  color: "#f6e8f3",
+                  border: "1px solid rgba(234,71,193,0.3)",
+                  fontFamily: "'Noto Sans Marchen', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  padding: "14px 36px",
+                  borderRadius: "14px",
+                  backdropFilter: "blur(20px)",
+                  boxShadow: "0 8px 32px rgba(234,71,193,0.15)",
+                }}
               >
                 Kostenlos starten <ArrowRight size={18} />
               </Button>
@@ -202,8 +223,16 @@ export default function LandingPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="lp-btn-outline"
-                style={{ fontSize: "16px", padding: "14px 36px" }}
+                style={{
+                  background: "rgba(246,232,243,0.04)",
+                  color: "#f6e8f3",
+                  border: "1px solid rgba(246,232,243,0.1)",
+                  fontFamily: "'Noto Sans Marchen', sans-serif",
+                  fontSize: "16px",
+                  padding: "14px 36px",
+                  borderRadius: "14px",
+                  backdropFilter: "blur(20px)",
+                }}
               >
                 <Github size={18} /> Source
               </Button>
@@ -359,8 +388,18 @@ export default function LandingPage() {
           <Link href="/register">
             <Button
               size="lg"
-              className="lp-btn-primary"
-              style={{ fontSize: "16px", padding: "14px 40px" }}
+              style={{
+                background: "linear-gradient(135deg, rgba(234,71,193,0.35), rgba(148,25,118,0.45))",
+                color: "#f6e8f3",
+                border: "1px solid rgba(234,71,193,0.3)",
+                fontFamily: "'Noto Sans Marchen', sans-serif",
+                fontWeight: 700,
+                fontSize: "16px",
+                padding: "14px 40px",
+                borderRadius: "14px",
+                boxShadow: "0 8px 32px rgba(234,71,193,0.2)",
+                backdropFilter: "blur(12px)",
+              }}
             >
               Jetzt registrieren <ArrowRight size={18} />
             </Button>
@@ -399,7 +438,7 @@ export default function LandingPage() {
                   const href = typeof link === "string" ? "#" : link.href;
                   return (
                     <li key={j}>
-                      <Link href={href} className="lp-footer-link">
+                      <Link href={href} style={{ color: "rgba(246,232,243,0.35)", textDecoration: "none", fontSize: "13px" }}>
                         {label}
                       </Link>
                     </li>
@@ -419,106 +458,6 @@ export default function LandingPage() {
           0%, 100% { transform: translate(0, 0) scale(1); }
           33% { transform: translate(30px, -20px) scale(1.05); }
           66% { transform: translate(-20px, 15px) scale(0.95); }
-        }
-
-        /* Nav links */
-        .lp-nav-link {
-          color: rgba(246,232,243,0.55);
-          text-decoration: none;
-          font-size: 14px;
-          transition: color 0.2s ease;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        }
-        .lp-nav-link:hover {
-          color: #ea47c1;
-        }
-
-        /* Glass buttons (primary) */
-        .lp-btn-primary {
-          background: linear-gradient(135deg, rgba(234,71,193,0.3), rgba(148,25,118,0.4));
-          color: #f6e8f3;
-          border: 1px solid rgba(234,71,193,0.3);
-          font-family: 'Noto Sans Marchen', sans-serif;
-          font-weight: 700;
-          border-radius: 14px;
-          backdrop-filter: blur(20px);
-          box-shadow: 0 8px 32px rgba(234,71,193,0.15);
-          transition: all 0.25s ease;
-          cursor: pointer;
-        }
-        .lp-btn-primary:hover {
-          background: linear-gradient(135deg, rgba(234,71,193,0.45), rgba(148,25,118,0.55));
-          box-shadow: 0 12px 40px rgba(234,71,193,0.25);
-          transform: translateY(-1px);
-          border-color: rgba(234,71,193,0.5);
-        }
-        .lp-btn-primary:active {
-          transform: translateY(0);
-          box-shadow: 0 4px 20px rgba(234,71,193,0.15);
-        }
-
-        /* Glass buttons (outline/secondary) */
-        .lp-btn-outline {
-          background: rgba(246,232,243,0.04);
-          color: #f6e8f3;
-          border: 1px solid rgba(246,232,243,0.1);
-          font-family: 'Noto Sans Marchen', sans-serif;
-          border-radius: 14px;
-          backdrop-filter: blur(20px);
-          transition: all 0.25s ease;
-          cursor: pointer;
-        }
-        .lp-btn-outline:hover {
-          background: rgba(246,232,243,0.08);
-          border-color: rgba(246,232,243,0.2);
-          transform: translateY(-1px);
-        }
-        .lp-btn-outline:active {
-          transform: translateY(0);
-        }
-
-        /* Header glass buttons (smaller) */
-        .lp-btn-header {
-          background: rgba(234,71,193,0.2);
-          color: #ea47c1;
-          border: 1px solid rgba(234,71,193,0.3);
-          font-family: 'Noto Sans Marchen', sans-serif;
-          font-weight: 700;
-          border-radius: 10px;
-          backdrop-filter: blur(12px);
-          transition: all 0.25s ease;
-          cursor: pointer;
-        }
-        .lp-btn-header:hover {
-          background: rgba(234,71,193,0.3);
-          border-color: rgba(234,71,193,0.5);
-          box-shadow: 0 4px 20px rgba(234,71,193,0.15);
-        }
-
-        /* Ghost button */
-        .lp-btn-ghost {
-          color: rgba(246,232,243,0.6);
-          font-family: 'Noto Sans Marchen', sans-serif;
-          border-radius: 10px;
-          transition: all 0.2s ease;
-          cursor: pointer;
-        }
-        .lp-btn-ghost:hover {
-          color: #f6e8f3;
-          background: rgba(246,232,243,0.06);
-        }
-
-        /* Footer links */
-        .lp-footer-link {
-          color: rgba(246,232,243,0.35);
-          text-decoration: none;
-          font-size: 13px;
-          transition: color 0.2s ease;
-        }
-        .lp-footer-link:hover {
-          color: #e284cb;
         }
       `}</style>
     </div>
