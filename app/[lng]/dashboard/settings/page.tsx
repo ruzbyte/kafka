@@ -30,7 +30,7 @@ import { Switch } from "@/components/ui/switch";
 import { useAuthStore } from "@/hooks/auth_hook";
 import { db } from "@/lib/firebase";
 import { doc, updateDoc } from "firebase/firestore";
-import { Icon, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
