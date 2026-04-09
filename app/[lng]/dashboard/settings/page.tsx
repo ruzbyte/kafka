@@ -102,6 +102,7 @@ function Settings() {
   }, [alarmsEnabled]);
 
   useEffect(() => {
+    if (!user) return;
     if (user) {
       setAlarmsEnabled(user.alarmsEnabled ?? false);
       setMultiAlarmEnabled(user.multiAlarmEnabled ?? false);
@@ -110,7 +111,7 @@ function Settings() {
         user.multiAlerts ? user.multiAlerts.map((time) => time.toString()) : [],
       );
     }
-  }, []);
+  }, [user]);
 
   return (
     <div>

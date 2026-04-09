@@ -3,7 +3,7 @@ import {
   getEnrolledAndUncompletedSubjects,
 } from "@/lib/subjects";
 import { webuntisApi } from "@/lib/webuntis_api";
-import ical, { ICalAlarmData, ICalAlarmType, ICalEvent } from "ical-generator";
+import ical, { ICalAlarmData, ICalAlarmType } from "ical-generator";
 
 import { NextRequest } from "next/server";
 
