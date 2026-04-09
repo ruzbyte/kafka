@@ -3,7 +3,7 @@ import {
   getEnrolledAndUncompletedSubjects,
 } from "@/lib/subjects";
 import { webuntisApi } from "@/lib/webuntis_api";
-import ical, { ICalEvent } from "ical-generator";
+import ical, { ICalAlarmData, ICalAlarmType, ICalEvent } from "ical-generator";
 
 import { NextRequest } from "next/server";
 
@@ -25,6 +25,9 @@ export async function GET(
 
     // Fetch user data
     const userSettings = await getUserSettings(userId);
+
+    console.log("User settings for calendar generation:", userSettings);
+
     if (!userSettings) {
       return new Response("User not found", { status: 404 });
     }
@@ -59,6 +62,31 @@ export async function GET(
       timezone: "Europe/Berlin",
     });
 
+    let userAlerts = {
+      alarmsEnabled: userSettings.alarmsEnabled ?? false,
+      multiAlarmEnabled: userSettings.multiAlarmEnabled ?? false,
+      alarmTime: userSettings.alarmTime ?? 15,
+      multiAlerts: userSettings.multiAlerts || [],
+    };
+
+    let alerts: ICalAlarmData[] = [];
+
+    if (userAlerts.alarmsEnabled) {
+      if (userAlerts.multiAlarmEnabled && userAlerts.multiAlerts.length > 0) {
+        alerts = userAlerts.multiAlerts.map((time: number) => ({
+          type: ICalAlarmType.display,
+          trigger: time * 60,
+        }));
+      } else if (userAlerts.alarmTime) {
+        alerts = [
+          {
+            type: ICalAlarmType.display,
+            trigger: userAlerts.alarmTime * 60,
+          },
+        ];
+      }
+    }
+
     groupedEvents.forEach((event) => {
       const summary = event.isCancelled
         ? `AUSFALL: ${event.title}`
@@ -81,6 +109,7 @@ export async function GET(
         location: event.isCancelled
           ? `ENTFÄLLT (ursprünglich: ${event.location})`
           : event.location,
+        alarms: event.isCancelled ? [] : alerts,
       });
     });
 
