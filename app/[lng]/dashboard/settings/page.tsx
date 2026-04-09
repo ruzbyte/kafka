@@ -30,6 +30,7 @@ import { Switch } from "@/components/ui/switch";
 import { useAuthStore } from "@/hooks/auth_hook";
 import { db } from "@/lib/firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import { Icon, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -149,15 +150,29 @@ function Settings() {
                 </h3>
               </CardHeader>
               <CardContent>
-                <Separator className="my-2" />
                 <ul className="flex flex-row gap-2">
                   {multiAlerts.map((time, index) => (
-                    <Badge key={index}>{time} Minuten vorher</Badge>
+                    <Badge asChild key={index}>
+                      <Button
+                        variant={"ghost"}
+                        size={"sm"}
+                        onClick={() =>
+                          setMultiAlerts((prev) =>
+                            prev.filter((t) => t !== time),
+                          )
+                        }
+                      >
+                        <X className="mr-1" size={12} />
+                        {time} Minuten vorher
+                      </Button>
+                    </Badge>
                   ))}
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button onClick={() => setMultiAlerts([])}>Clear</Button>
+                <Button onClick={() => setMultiAlerts([])}>
+                  Alle entfernen
+                </Button>
               </CardFooter>
             </Card>
           )}
