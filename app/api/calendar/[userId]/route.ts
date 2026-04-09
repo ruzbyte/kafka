@@ -26,8 +26,6 @@ export async function GET(
     // Fetch user data
     const userSettings = await getUserSettings(userId);
 
-    console.log("User settings for calendar generation:", userSettings);
-
     if (!userSettings) {
       return new Response("User not found", { status: 404 });
     }

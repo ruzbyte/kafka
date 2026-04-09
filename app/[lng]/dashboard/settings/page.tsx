@@ -29,7 +29,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Switch } from "@/components/ui/switch";
 import { useAuthStore } from "@/hooks/auth_hook";
 import { db } from "@/lib/firebase";
-import { doc, updateDoc } from "@firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -70,6 +70,7 @@ function Settings() {
   const { user } = useAuthStore();
 
   const addToMultiAlerts = (time: string) => {
+    if (multiAlerts.includes(time)) return;
     setMultiAlerts((prev) => [...prev, time]);
   };
 
@@ -98,6 +99,17 @@ function Settings() {
       setMultiAlerts([]);
     }
   }, [alarmsEnabled]);
+
+  useEffect(() => {
+    if (user) {
+      setAlarmsEnabled(user.alarmsEnabled ?? false);
+      setMultiAlarmEnabled(user.multiAlarmEnabled ?? false);
+      setAlarmTime(user.alarmTime ? user.alarmTime.toString() : "15");
+      setMultiAlerts(
+        user.multiAlerts ? user.multiAlerts.map((time) => time.toString()) : [],
+      );
+    }
+  }, []);
 
   return (
     <div>
