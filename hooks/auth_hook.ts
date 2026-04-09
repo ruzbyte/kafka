@@ -8,6 +8,7 @@ import { create } from "zustand";
 import { doc, onSnapshot, type DocumentData } from "firebase/firestore";
 import { schoolType } from "@/components/onboarding-flow";
 import { studyFieldType } from "@/types/types";
+
 export interface User {
   uid: string;
   email: string | null;
@@ -20,6 +21,10 @@ export interface User {
   avatarUrl?: string;
   updatedAt?: string;
   defaultSchoolYear?: string;
+  alarmsEnabled?: boolean;
+  multiAlarmEnabled?: boolean;
+  alarmTime?: number;
+  multiAlerts?: number[];
 }
 
 interface AuthState {
@@ -76,6 +81,10 @@ export const useAuthStore = create<AuthState>((set, get) => {
                   onboardingCompleted: data.onboardingCompleted,
                   avatarUrl: data.avatarUrl || state.user!.avatarUrl,
                   defaultSchoolYear: data.defaultSchoolYear,
+                  alarmsEnabled: data.alarmsEnabled ?? false,
+                  multiAlarmEnabled: data.multiAlarmEnabled ?? false,
+                  alarmTime: data.alarmTime ?? 15,
+                  multiAlerts: data.multiAlerts ?? [],
                 },
               }));
             }
